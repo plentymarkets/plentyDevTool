@@ -1,0 +1,6 @@
+name: plentydevtool
+title: plentyDevTool
+version: main
+nav:
+  - modules/ROOT/nav.adoc
+start_page: ROOT:plentydevtool-introduction.adoc
