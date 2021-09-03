@@ -1,0 +1,28 @@
+<div class="path-config">
+    <div class="plenty-base-wrapper">
+        <div class="path-config">
+            <div class="input-wrapper">
+                <input (click)="getPath()" [value]="selectedPath" aria-describedby="basic-addon1" aria-label=""
+                       class="form-control" placeholder="{{ 'fs.path.placeholder' | translate }}" readonly type="text">
+               <button (click)="deleteSelection()" class="btn p-0">
+                   <span class="material-icons">clear</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <p class="text p-1 mb-2">{{ 'fs.path.selectInfo' | translate }}</p>
+    <div class="alert alert-success" [hidden]="!savedPath">
+        <p class="mb-0"><span class="icon-success mb-0 mr-2"></span>{{ 'fs.path.saved' | translate }}
+            <a [routerLink]="['/dashboard', loginId]">{{ 'fs.path.dashboard' | translate }}</a>
+            {{ 'fs.path.saved2' | translate }}
+            <button type="button" class="close" data-dismiss="alert" (click)="savedPath=false" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </p>
+    </div>
+    <div class="plenty-base-wrapper rounded p-0">
+        <div class="alert alert-warning">
+            <p class="mb-0"><span class="icon-warning mb-0 mr-2"></span>{{ 'fs.path.selectAtt' | translate }}</p>
+        </div>
+    </div>
+</div>

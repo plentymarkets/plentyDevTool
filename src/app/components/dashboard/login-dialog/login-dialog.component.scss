@@ -1,0 +1,15 @@
+.modal-body {
+  padding: 35px;
+
+  .close-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    transform: translate(5px, -30px);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+    "nav": {
+        "dashboard": "Dashboard",
+        "setting": "Einstellungen",
+        "log": "Logs",
+        "logoutById": "Von System {{ id }} ausloggen",
+        "logoutAllUsers": "Von allen Systemen ausloggen",
+        "logout": "Ausloggen",
+        "switchUser": "System wechseln"
+    },
+    "misc": {
+        "load": "Wird geladen...",
+        "and": "und",
+        "pluginSetLinkedWebshops": "Verknüpft mit: {{webshops}}",
+        "reload": "Erneut laden",
+        "expand": "Alle ausklappen",
+        "collapse": "Alle einklappen",
+        "changesContainingForbiddenChars": "Änderungen an den folgenden Dateipfaden werden nicht hochgeladen, da sie verbotene Zeichen enthalten.",
+        "forbiddenCharList": "Bei den verbotenen Zeichen handelt es sich um die Zeichen {{ Zeichen }} und alle ASCII-Zeichen von {{ asciiStart }} bis {{ asciiStop }} (dezimal)."
+    },
+    "sync": {
+        "push": "Push",
+        "pull": "Pull",
+        "detectNewPlugins": "Neue lokale Plugins erkennen",
+        "install": "Installieren",
+        "installSuccess": "Das Plugin '{{ pluginName }}' wurde installiert. Denke daran, das Plugin im Backend zu aktivieren und das Plugin-Set '{{ pluginSetName }}' bereitzustellen.",
+        "working": "Dateien werden synchronisiert..."
+    },
+    "action": {
+        "push": "Pushing",
+        "pull": "Pulling",
+        "process_files": "Lokale Dateien werden verarbeitet",
+        "process_loading": "Dateien werden geladen...",
+        "download_file": "Folgende Datei wird heruntergeladen:",
+        "download_zip": "Folgende ZIP-Datei wird verarbeitet und heruntergeladen:",
+        "upload_file": "Folgende Datei wird hochgeladen:",
+        "delete_local_file": "Folgende lokale Datei wird gelöscht:"
+    },
+    "fs": {
+        "path": {
+            "placeholder": "Wähle einen lokalen Ordner zum Synchronisieren deiner Plugins",
+            "select": "Wähle einen Ordner aus",
+            "saved": "Der Synchronisierungspfad wurde gespeichert. Öffne das ",
+            "dashboard": "Dashboard",
+            "saved2": "um loszulegen.",
+            "notSelect": "Kein Pfad ausgewählt",
+            "selectInfo": "Durch plentyDevTool werden automatisch Unterordner basierend auf deinen PIDs, Plugin-Set-IDs und Plugins erstellt.",
+            "selectAtt": "Die so generierte Struktur darf nicht verändert werden. Vermeide das Hinzufügen, Löschen und Ändern von Dateien außerhalb der Plugin-Unterordner.",
+            "syncDisabledWarning": "Synchronisationsoptionen sind deaktiviert, da kein lokaler Ordner ausgewählt wurde. Öffne"
+        }
+    },
+    "cred": {
+        "openExternal": "Öffne {{ plentyURL }} in einem Browser-Tab",
+        "placePid": "PlentyID",
+        "placePwd": "Passwort",
+        "placeUser": "Benutzername",
+        "submit": "Einloggen",
+        "validPid": "Die PlentyID muss 5 Ziffern enthalten.",
+        "validPwd": "Das eingegebene Kennwort ist ungültig.",
+        "validUser": "Der eingegebene Benutzername ist ungültig."
+    },
+    "error": {
+        "login": {
+            "invalidCred": "Der eingegebene Benutzername oder das eingegebene Kennwort ist ungültig.",
+            "invalidPid": "Die eingegebene PlentyID existiert nicht."
+        },
+        "unknown": "Ein Fehler ist aufgetreten.",
+        "changeCloud": "Öffne die erweiterten Einstellungen, um zu prüfen, ob du dich mit der richtigen Cloud verbindest."
+    },
+    "build": {
+        "success": "Die Änderungen wurden bereitgestellt.",
+        "error": "Es gab ein Problem beim Bereitstellen der Änderungen.",
+        "changesPushed": "Die Änderungen wurden gepusht, aber nicht bereitgestellt.",
+        "pushRejected": "Die Änderungen konnten nicht gepusht werden. Das Plugin-Set wird zur Zeit bereitgestellt.",
+        "fullBuild": "Damit deine Änderungen wirksam werden, musst du das Plugin-Set in deinem plentymarkets System bereitstellen."
+    },
+    "lang": {
+        "en": "English",
+        "de": "Deutsch"
+    },
+    "domain": {
+        "cloudDe" : "Cloud DE",
+        "cloudIe" : "Cloud IE",
+        "ownCloud": "Eigene Cloud",
+        "cloudId": "Cloud-ID"
+    },
+    "showAdvanced": "Erweiterte Einstellungen öffnen",
+    "modal": {
+        "sessionExpired": "Sitzung für PID {{systemId}} abgelaufen",
+        "sessionExpiredDescription": "Die Sitzung für dieses System ist abgelaufen. Du kannst dich entweder wieder einloggen oder das System schließen.",
+        "closeSystem": "System schließen",
+        "login": "Einloggen"
+    }
+}
