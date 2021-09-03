@@ -1,0 +1,24 @@
+name: lint-test-build
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node: [14]
+        check-latest: [true]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - run: yarn
+    - run: npm run lint
+    - run: npm run test-headless
+    - run: npm run build:prod
+      env:
+        CI: true
