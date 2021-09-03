@@ -10,8 +10,11 @@ The application was tested on the following operating systems:
 - [ ] macOS
 - [ ] Windows
 
-### Changelog
+### Documentation
+
+The user documentation is located in the docs folder. The documentation is based on [Antora](https://docs.antora.org/antora/2.3/).
 
 Changelogs are added to the `CHANGELOG.md` file. plentyDevTool uses semantic versioning and a New, Change, Fix, Delete categorisation, so please follow the existing structure.
 
+- [ ] Added documentation
 - [ ] Added a new changelog entry
