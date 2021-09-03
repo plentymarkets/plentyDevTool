@@ -1,0 +1,160 @@
+.bg-dark {
+    background-color: #2f323a !important;
+}
+
+.bg-primary {
+    background-color: #008ebd !important;
+}
+
+.bg-warning {
+    background-color: #ffdb4c !important;
+}
+
+.bg-danger {
+    background-color: #f11539 !important;
+}
+
+.plenty-content-color {
+    background-color: #e9eaec !important;
+}
+
+.btn-primary {
+    background-color: #008ebd !important;
+    border-color: #008ebd !important;
+}
+
+.btn {
+    &.disabled {
+        background-color: #d7d8db;
+        color: #7b7e85;
+        cursor: not-allowed;
+        pointer-events: none;
+        border: none !important;
+    }
+}
+
+hr {
+    border-color: #C6C7CA !important;
+}
+
+.plenty-base-wrapper {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+}
+
+.plenty-warning-wrapper {
+    background-color: #ffdb4c !important;
+    color: #333;
+}
+
+.plenty-terra-button {
+    font-size: 13px;
+    background-color: #636671;
+    color: #fff;
+    height: 36px;
+    padding: 0 8px;
+    margin-right: 0.25rem;
+    text-align: center;
+    border: 0;
+    border-radius: 2px;
+
+    &:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    &.highlighted-green {
+        border-bottom: 4px solid #6ad26a;
+    }
+
+    &.highlighted-blue {
+        border-bottom: 4px solid #3f54d0;
+    }
+
+    &.highlighted-red {
+        border-bottom: 4px solid #f11539;
+    }
+
+    &:hover {
+        background-color: #24b3e0;
+        color: #fff;
+    }
+
+    span[class^="icon-"], [class*="icon-"] {
+        cursor: pointer;
+        line-height: 0;
+        font-size: 20px;
+        position: relative;
+        top: 4.0px;
+    }
+
+    &.btn-terra-sm {
+        height: 26px;
+        padding: 0 5px;
+
+        span[class^="icon-"], [class*="icon-"] {
+            font-size: 16px;
+            top: 3px;
+        }
+    }
+}
+
+.input-wrapper {
+    position: relative;
+
+    input {
+        font-size: 14px !important;
+        background-color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 0 !important;
+        border-bottom: 1px solid #C6C7CA !important;
+        cursor: pointer;
+        width: 100% !important;
+        padding-right: 25px;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    button {
+        position: absolute;
+        margin-right: 0 !important;
+        right: 0;
+        top: 5px;
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        width: 0%;
+        right: 50%;
+        position: absolute;
+        height: 2px;
+        background-color: #24B3E0;
+        transition: width ease 0.4s;
+        bottom: 0;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        width: 0%;
+        left: 50%;
+        position: absolute;
+        height: 2px;
+        background-color: #24B3E0;
+        transition: width ease 0.4s;
+        bottom: 0;
+    }
+
+    &:hover {
+        &:before, &:after {
+            width: 50%;
+        }
+    }
+}
+

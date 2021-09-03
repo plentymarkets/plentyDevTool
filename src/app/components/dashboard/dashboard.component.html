@@ -1,0 +1,5 @@
+<ng-container *ngIf="routeParams$ | async as routeParams">
+    <app-nav-bar [loginId]="routeParams.loginId"></app-nav-bar>
+    <app-left-bar [loginId]="routeParams.loginId"></app-left-bar>
+    <app-content></app-content>
+</ng-container>

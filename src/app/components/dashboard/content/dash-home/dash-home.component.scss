@@ -1,0 +1,90 @@
+.plenty-top-base-wrapper {
+    display: flex;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px;
+    font-size: 14px;
+
+    button {
+        padding: 0 15px;
+    }
+}
+
+.dash-board-wrapper {
+    margin-top: .5rem;
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 10%;
+
+    .set-header {
+        color: #fff;
+        background-color: #7b7e85;
+
+        span {
+            font-size: 18px;
+            vertical-align: text-bottom;
+        }
+    }
+
+    ul {
+        & + ul {
+            border-top: 1px solid #7b7e85;
+        }
+    }
+
+    .folder-item {
+        span {
+            color: #555;
+            font-size: 18px;
+            vertical-align: text-bottom;
+        }
+    }
+
+    .change-item {
+        font-size: 14px;
+
+        .change-status {
+            &:after {
+                color: white;
+                border-radius: 3px;
+                margin-right: 10px;
+                vertical-align: middle;
+
+                font-family: 'plentyicons' !important;
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+
+                /* Better Font Rendering =========== */
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            &.add {
+                &:after {
+                    content: "\e901";
+                    font-weight: 600;
+                    background-color: #46a046;
+                }
+            }
+
+            &.modify {
+                &:after {
+                    content: "\e9df";
+                    background-color: #ffdb4c;
+                }
+            }
+
+            &.delete {
+                &:after {
+                    content: "\e951";
+                    color: #f11539;
+                }
+            }
+        }
+    }
+}

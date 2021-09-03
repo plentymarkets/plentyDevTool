@@ -1,0 +1,14 @@
+<div class="modal-wrapper">
+    <div class="modal-header">
+        <h5 class="modal-title">{{ 'modal.sessionExpired' | translate:{systemId: this.userId} }}</h5>
+    </div>
+    <div class="modal-body">
+        <p>{{ 'modal.sessionExpiredDescription' | translate }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+                (click)="closeSystem()">{{ 'modal.closeSystem' | translate }}</button>
+        <button type="button" ngbAutofocus class="btn btn-primary btn-sm"
+                (click)="loginClicked()">{{ 'modal.login' | translate }}</button>
+    </div>
+</div>

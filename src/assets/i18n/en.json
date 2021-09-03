@@ -1,0 +1,94 @@
+{
+    "nav": {
+        "dashboard": "Dashboard",
+        "setting": "Settings",
+        "log": "Logs",
+        "logoutById": "Logout from system {{ id }}",
+        "logoutAllUsers": "Logout from all systems",
+        "logout": "Logout",
+        "switchUser": "Switch system"
+    },
+    "misc": {
+        "load": "Loading...",
+        "and": "and",
+        "pluginSetLinkedWebshops": "Linked to: {{webshops}}",
+        "reload": "Reload",
+        "expand": "Expand all",
+        "collapse": "Collapse all",
+        "changesContainingForbiddenChars": "Changes to the following paths will not be pushed because they contain forbidden characters.",
+        "forbiddenCharList": "Forbidden characters are {{ signs }} and any ASCII character from {{ asciiStart }} to {{ asciiStop }} (decimal)."
+    },
+    "sync": {
+        "push": "Push",
+        "pull": "Pull",
+        "detectNewPlugins": "Detect new local plugins",
+        "install": "Install",
+        "installSuccess": "The plugin '{{ pluginName }}' has been installed. Remember to activate the plugin in the back end and deploy the plugin set '{{ pluginSetName }}'.",
+        "working": "Synchronising files..."
+    },
+    "action": {
+        "push": "Pushing",
+        "pull": "Pulling",
+        "process_files": "Processing local files",
+        "process_loading": "Loading files...",
+        "download_file": "Downloading file:",
+        "download_zip": "Processing and downloading zip file:",
+        "upload_file": "Uploading file:",
+        "delete_local_file": "Deleting local file:"
+    },
+    "fs": {
+        "path": {
+            "placeholder": "Choose a local folder to synchronise your plugins with",
+            "select": "Select a folder",
+            "saved": "The synchronisation path has been saved. Go to the ",
+            "dashboard": "Dashboard",
+            "saved2": "to get started.",
+            "notSelect": "No path selected",
+            "selectInfo": "plentyDevTool will automatically create subfolders based on your PID, plugin set IDs and plugins.",
+            "selectAtt": "Do not change the generated structure. Do not add, delete or modify files manually anywhere outside the plugin subfolders.",
+            "syncDisabledWarning": "Synchronisation options are disabled because no local folder is selected. Go to"
+        }
+    },
+    "cred": {
+        "openExternal": "Open {{ plentyURL }} in a browser tab",
+        "placePid": "PlentyID",
+        "placePwd": "Password",
+        "placeUser": "Username",
+        "submit": "Login",
+        "validPid": "The PlentyID must have 5 digits.",
+        "validPwd": "The password you entered is incorrect.",
+        "validUser": "The username you entered is incorrect."
+    },
+    "error": {
+        "login": {
+            "invalidCred": "The username or password you have entered is incorrect.",
+            "invalidPid": "The PlentyID you have entered is incorrect."
+        },
+        "unknown": "An error occurred.",
+        "changeCloud": "Open the advanced settings to check if you're connecting to the correct cloud."
+    },
+    "build": {
+        "success": "The changes have been deployed.",
+        "error": "A problem occurred while deploying the changes.",
+        "changesPushed": "The changes have been pushed, but not deployed.",
+        "pushRejected": "The changes weren't pushed. The system is currently deploying the plugin set.",
+        "fullBuild": "For your changes to take effect, deploy the plugin set in the plentymarkets system."
+    },
+    "lang": {
+        "en": "English",
+        "de": "Deutsch"
+    },
+    "domain": {
+        "cloudDe" : "Cloud DE",
+        "cloudIe" : "Cloud IE",
+        "ownCloud": "Own cloud",
+        "cloudId": "Cloud ID"
+    },
+    "showAdvanced": "Open advanced settings",
+    "modal": {
+        "sessionExpired": "Session for PID {{systemId}} expired",
+        "sessionExpiredDescription": "The session has expired for the current system. Either log in again or close the system.",
+        "closeSystem": "Close system",
+        "login": "Login"
+    }
+}

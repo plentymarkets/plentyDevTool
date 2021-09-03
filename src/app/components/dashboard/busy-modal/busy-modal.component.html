@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{'action.' + currentAction | translate}}</h4>
+</div>
+<div class="modal-body">
+    <ngb-progressbar type="info" [value]="value" [showValue]="showValue" [striped]="true"
+                     [animated]="true"></ngb-progressbar>
+    <div *ngIf="currentJobFilename.length > 0">
+        <!--The filename must be passed via "innerHTML", because it contains HTML tags itself (word breaks for text-overflow).-->
+        {{currentJobAction}}<br><span [innerHTML]="currentJobFilename"></span>
+    </div>
+</div>

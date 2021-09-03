@@ -1,0 +1,119 @@
+<div class="dashboard">
+
+    <div class="plenty-top-base-wrapper justify-content-end">
+        <div>
+            <button (click)="syncService.detectNewPlugins()" [class.disabled]="isLoading || selectedPath.length <= 0 || pluginSets.length <= 0"
+                    class="btn plenty-terra-button highlighted-yellow"
+                    type="button">
+                <span class="icon-plugin"></span>   {{ 'sync.detectNewPlugins' | translate }}
+            </button>
+            <button (click)="syncService.pull()" [class.disabled]="isLoading || selectedPath.length <= 0 || pluginSets.length <= 0"
+                    class="btn plenty-terra-button highlighted-yellow"
+                    type="button">
+                <span class="icon-plugin_pull"></span>{{ 'sync.pull' | translate }}
+            </button>
+            <button (click)="syncService.push()" [class.disabled]="isLoading || selectedPath.length <= 0 ||
+                                                  changes.length <= 0 || pluginSets.length <= 0"
+                    class="btn plenty-terra-button highlighted-yellow"
+                    type="button">
+                <span class="icon-plugin_push"></span>{{ 'sync.push' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div class="dash-board-wrapper">
+
+        <div *ngIf="selectedPath.length <= 0" class="plenty-base-wrapper plenty-warning-wrapper p-3">
+            <span class="icon-warning mr-1"></span>
+            {{ 'fs.path.syncDisabledWarning' | translate }}
+            <a class="text-primary" href="#" [routerLink]="['/dashboard', loginId, 'settings']">{{ 'nav.setting' | translate }}</a>
+            {{ 'misc.and' | translate }} {{ 'fs.path.select' | translate }}.
+        </div>
+
+        <ngb-alert [dismissible]="false" [type]="'warning'" *ngIf="changesWithForbiddenCharacters.length > 0">
+            <h4 class="alert-heading">{{ 'misc.changesContainingForbiddenChars' | translate }}</h4>
+            <ul>
+                <li *ngFor="let forbiddenChange of changesWithForbiddenCharacters">
+                    {{forbiddenChange.path}}
+                </li>
+            </ul>
+            {{ 'misc.forbiddenCharList' | translate:forbiddenCharactersParams }}
+        </ngb-alert>
+
+        <div *ngIf="!!buildResult" class="alert" [ngClass]="{
+        'alert-success': buildResult?.buildExecuted && buildSuccess,
+        'alert-danger': buildResult?.buildExecuted && !buildSuccess,
+        'alert-info': !buildResult?.buildExecuted && buildResult?.changesPushed,
+        'alert-warning': !buildResult?.buildExecuted && !buildResult?.changesPushed
+        }" role="alert">
+            <div *ngIf="buildResult?.buildExecuted; else buildNotExecuted">
+                <ng-container *ngIf="buildSuccess; then success; else noSuccess"></ng-container>
+                <ng-template #success>
+                    <div [innerHTML]="'build.success' | translate"></div>
+                </ng-template>
+                <ng-template #noSuccess>
+                    <h4 class="alert-heading">{{ 'build.error' | translate }}</h4>
+                    <p *ngFor="let error of buildResult?.buildErrors">{{error}}</p>
+                </ng-template>
+            </div>
+            <ng-template #buildNotExecuted>
+                <div *ngIf="buildResult?.changesPushed">
+                    <div [innerHTML]="'build.changesPushed' | translate"></div>
+                </div>
+                <div *ngIf="!buildResult?.changesPushed">
+                    <div [innerHTML]="'build.pushRejected' | translate"></div>
+                </div>
+            </ng-template>
+        </div>
+
+        <div *ngIf="!!buildResult && changesRequireFullBuild.length > 0" class="alert alert-info" role="alert">
+            <div [innerHTML]="'build.fullBuild' | translate"></div>
+        </div>
+
+        <ngb-alert *ngIf="successMessage !== ''" type="success"
+                   (close)="closeMessage()">{{ successMessage }}</ngb-alert>
+
+        <div *ngIf="isLoading" class="alert-info p-2">
+            <h4 class="alert-heading">
+                <div class="loader"></div>
+                {{ 'sync.working' | translate }}
+            </h4>
+            <p class="ml-3">{{ loadingPlugins }}</p>
+        </div>
+
+        <div class="install-plugin-wrapper" *ngIf="!!newPlugins">
+            <div *ngFor="let newPlugin of newPlugins" class="plenty-base-wrapper d-flex justify-content-between">
+                <div class="mr-auto">
+                    <button (click)="installPlugin(newPlugin)" type="button"
+                            class="btn plenty-terra-button highlighted-green">
+                        <span class="icon-upload"></span>{{ 'sync.install' | translate }}
+                    </button>
+                    <span class="ml-3">{{getPluginSetName(newPlugin.pluginSetId)}}/{{newPlugin.pluginName}}</span>
+                </div>
+                <button (click)="removeNewPluginFromList(newPlugin)" type="button"
+                        class="btn plenty-terra-button highlighted-red">
+                    <span class="icon-close"></span>
+                </button>
+            </div>
+        </div>
+
+        <div *ngIf="!!pluginSets && selectedPath.length > 0 && !isLoading">
+            <div *ngFor="let set of changes|keyvalue" class="plenty-base-wrapper p-0 pb-2">
+                <p class="set-header mb-0 p-2"><span
+                    class="icon-ticket_folder_move"></span> {{getPluginSetNameFromKeyValue(set)}}
+                </p>
+                <ul *ngFor="let plugin of set.value|keyvalue" class="list-unstyled my-2 mx-2 p-2 pt-3">
+                    <li class="folder-item mb-2">
+                        {{plugin.key}}
+                    </li>
+                    <li *ngFor="let changeData of plugin.value|keyvalue" class="ml-3">
+                    <span *ngFor="let change of changeData.value|keyvalue" class="change-item">
+                        <span class="change-status {{change.key|lowercase}}"></span>{{change.value}}
+                    </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
