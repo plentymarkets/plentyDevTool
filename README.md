@@ -36,7 +36,9 @@ Most of the messages sent from Angular trigger the second method.
 
 ### Example 1: User actions
 
-If a user does not have modified files, they're not able to execute a **Push** action, so the button is disabled. However, the user can perform the same action by using a shortcut. The shortcuts are defined in the `main.ts` file which can be accessed by sending a message through `ipcRenderer.sendToMain()`.
+If a user does not have modified files, they're not able to execute a **Push** action, so the button is disabled. However, there's also a shortcut for the **Push** action. To make sure the user can only trigger a **Push** when there are modified files, the shortcut has to be disabled as well.
+
+The shortcuts are defined in the `main.ts` file. The application can access `main.ts` by sending a message through `ipcRenderer.sendToMain()`.
 
 ```
 this.electronService.sendToMain(
@@ -45,7 +47,7 @@ this.electronService.sendToMain(
  );
 ```
 
-After the message is received, a function is called in `main.ts`. `IpcMain` is imported from Electron and the method `.on()` is used to subscribe to the response.
+After the message is received, a function is called in `main.ts`. This function uses the `ipcMain` module from Electron and the `.on()` method to subscribe to the response. Depending on the response, the action gets either enabled or disabled.
 
 `ipcMain.on(EVENTS.menu.enable, (event, menuItemId) => toggleMenuItem(menuItemId, true));`
 
@@ -53,7 +55,7 @@ After the message is received, a function is called in `main.ts`. `IpcMain` is i
 
 ### Example 2: Synchronisation
 
-To initialise and synchronise the selected plugins, a message is sent through `ipcRenderer.sendTo()`, but first calling the function from `ElectronService`.
+To initialise and synchronise the selected plugins, a message is sent through `ipcRenderer.sendTo()`. plentyDevTool extends this functionality by first calling the `sendToSyncWorker` method in `ElectronService`. This method implements checks before starting the initialisation and synchronisation process.
 
 ```
 this.electronService.sendToSyncWorker(EVENTS.syncer.init, options);
@@ -80,19 +82,21 @@ Two very important files are `syncer.ts` and `watcher.ts`. The messages are emit
 5. Stopping - stops the synchronisation
 
 The watcher will start after the initialisation is done or before the first job from the queue. The connection to the watcher is made by calling the following functions:
-* `start()` - initialises the watcher and the subscriptions to:
-    * `onWatcherAdd()`
-        * checks if the `localPath` should be synchronised, checks if there are any new or modified files and pushes them into an array
-    * `onWatcherChange()`
-        * checks if the `localPath` should be synchronised, check if there are any modified files and pushes them into an array
-    * `onWatcherUnlink()`
-        * checks if the `localPath` should be synchronised, checks if there are any deleted files and pushes them into an array
-    * `onWatcherReady()`
-        * checks if there are any differences between the current files and all the entries from the database and pushes them into an array
-        * emits a message which contains the changes
-        * emits a message which contains new plugins which can be installed (only if the option **Detect new plugins** is selected)
+* `start()` - initialises the watcher
 * `stop()` - closes the watcher
 * `getChanges()` - gets the changes
+
+After initialising the watcher, the `start()` method subscribes to the methods listed below. `onWatcherAdd`, `onWatcherChange` and `onWatcherUnlink` all check that `localPath` should be synchronised before proceeding.
+
+* `onWatcherAdd()` - checks if there are any new files and pushes them into an array
+* `onWatcherChange()` - checks if there are any modified files and pushes them into an array
+* `onWatcherUnlink()` - checks if there are any deleted files and pushes them into an array
+
+Finally, there's `onWatcherReady`. This method implements the following functionality:
+
+* checks if there are any differences between the current files and all the entries from the database and pushes them into an array
+* emits a message which contains the changes
+* if the user click on **Detect new plugins**, emits a message which contains the plugins that can be installed
 
 ## Logging
 
@@ -113,7 +117,7 @@ The watcher will start after the initialisation is done or before the first job 
 1. error
 2. warn
 3. info (information you want to see every time, for example: JobQueue is empty)
-4. debug (information you **DON'T** want to see every time, for example: Writing a key to the localstorage)
+4. debug (information you *DON'T* want to see every time, for example: Writing a key to the localstorage)
 
 ### Read Logs
 
