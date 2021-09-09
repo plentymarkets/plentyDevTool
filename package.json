@@ -26,18 +26,18 @@
     "test-headless": "npm run postinstall && ng test --watch=false --browsers ChromeHeadlessNoSandbox",
     "reinstall": "rm -rf node_modules/ && npm i",
     "lint": "eslint src/environments/**/* src/**/*.ts",
-
+    "//": "following commands are used only for production",
     "build:prod": "npm run build -- -c production",
     "electron:local": "npm run build:prod && electron .",
-    "electron:linux": "npm run build:prod && electron-builder build --linux",
-    "electron:windows": "npm run build:prod && electron-builder build --windows",
-    "electron:mac": "npm run build:prod && electron-builder build --mac",
-    "electron:all": "rm -rf release && npm run build:prod && electron-builder build -mwl",
-    "electron:all:publish": "rm -rf release && npm run build:prod && electron-builder build -mwl -p always",
+    "electron:linux": "npm run build:prod && electron-builder --config build/electron-builder.json build --linux",
+    "electron:windows": "npm run build:prod && electron-builder --config build/electron-builder.json build --windows",
+    "electron:mac": "npm run build:prod && electron-builder --config build/electron-builder.json build --mac",
+    "electron:all": "rm -rf release && npm run build:prod && electron-builder --config build/electron-builder.json build -mwl",
+    "electron:all:publish": "rm -rf release && npm run build:prod && electron-builder --config build/electron-builder.json build -mwl -p always",
     "release:major": "npm version major && npm run electron:all:publish",
     "release:minor": "npm version minor && npm run electron:all:publish",
     "release:patch": "npm version patch && npm run electron:all:publish",
-    "preversion": "bash checkMasterBranch.sh && npm run test-headless"
+    "preversion": "bash build/checkMasterBranch.sh && npm run test-headless"
   },
   "dependencies": {
     "@electron/typescript-definitions": "^8.9.4",
