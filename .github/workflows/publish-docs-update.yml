@@ -1,0 +1,17 @@
+name: Publish docs update
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Rebuild site
+              run: |
+                  curl -X POST https://api.github.com/repos/plentymarkets/plenty-developers-docs/dispatches \
+                  -H 'Accept: application/vnd.github.v3+json' \
+                  --user 'plentymonkey:${{ secrets.addValidToken }}' \
+                  --data '{"event_type": "ContentSourceUpdate", "client_payload": { "repository": "${{ github.repository }}" }}'
