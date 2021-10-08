@@ -1,3 +1,7 @@
+## 1.4.1
+### Fixed
+* Fixed Let's Encrypt certificate compatibility.
+
 ## 1.4.0
 ### New
 * Updated Angular to version 12. The update improves security and stability.

@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as log from 'electron-log';
 import * as cs from 'checksum';
 import * as fs from 'fs';
-import { remote } from 'electron';
+import * as remote from '@electron/remote';
 
 const DOT_REPLACEMENT = '___DOT___';
 const TIMESTAMP_DELAY_SECONDS = 2;

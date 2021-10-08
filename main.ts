@@ -8,6 +8,7 @@ import {
     screen,
     shell
 } from 'electron';
+require('@electron/remote/main').initialize();
 import * as path from 'path';
 import * as url from 'url';
 import {EVENTS, MENU_ITEMS} from './src/constants';
@@ -71,65 +72,65 @@ function createMenu() {
         label: 'Application',
         submenu: applicationSubmenu
     },
-        {
-            label: 'Edit',
-            submenu: [
-                {label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:'},
-                {label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:'},
-                {label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:'},
-                {label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:'},
-                {label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:'},
-            ]
-        },
-        {
-            id: MENU_ITEMS.actions.all,
-            label: 'Actions',
-            submenu: [
-                {
-                    id: MENU_ITEMS.actions.pull,
-                    enabled: false,
-                    label: 'Pull',
-                    accelerator: 'CommandOrControl+P',
-                    click() {
-                        userInterface.webContents.send(EVENTS.menu.pull);
-                    }
-                },
-                {
-                    id: MENU_ITEMS.actions.push,
-                    enabled: false,
-                    label: 'Push',
-                    accelerator: 'CommandOrControl+U',
-                    click() {
-                        userInterface.webContents.send(EVENTS.menu.push);
-                    }
-                },
-                {
-                    id: MENU_ITEMS.actions.detect,
-                    enabled: false,
-                    label: 'Detect new Plugins',
-                    accelerator: 'CommandOrControl+D',
-                    click() {
-                        userInterface.webContents.send(EVENTS.menu.detect);
-                    }
-                },
-            ]
-        },
-        {
-            label: 'Help',
-            submenu: [
-                {
-                    label: 'Forum', click: () => {
-                        // noinspection JSIgnoredPromiseFromCall
-                        shell.openExternal('https://forum.plentymarkets.com/c/plugin-entwicklung/plentydevtool');
-                    }
+    {
+        label: 'Edit',
+        submenu: [
+            {label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:'},
+            {label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:'},
+            {label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:'},
+            {label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:'},
+            {label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:'},
+        ]
+    },
+    {
+        id: MENU_ITEMS.actions.all,
+        label: 'Actions',
+        submenu: [
+            {
+                id: MENU_ITEMS.actions.pull,
+                enabled: false,
+                label: 'Pull',
+                accelerator: 'CommandOrControl+P',
+                click() {
+                    userInterface.webContents.send(EVENTS.menu.pull);
                 }
-                /**,{
+            },
+            {
+                id: MENU_ITEMS.actions.push,
+                enabled: false,
+                label: 'Push',
+                accelerator: 'CommandOrControl+U',
+                click() {
+                    userInterface.webContents.send(EVENTS.menu.push);
+                }
+            },
+            {
+                id: MENU_ITEMS.actions.detect,
+                enabled: false,
+                label: 'Detect new Plugins',
+                accelerator: 'CommandOrControl+D',
+                click() {
+                    userInterface.webContents.send(EVENTS.menu.detect);
+                }
+            },
+        ]
+    },
+    {
+        label: 'Help',
+        submenu: [
+            {
+                label: 'Forum', click: () => {
+                    // noinspection JSIgnoredPromiseFromCall
+                    shell.openExternal('https://forum.plentymarkets.com/c/plugin-entwicklung/plentydevtool');
+                }
+            }
+            /**,{
                     label: 'License', click: () => {
                         shell.openExternal('https://www.plentymarkets.eu/');
                     }
                 }*/
-            ]
-        }
+        ]
+    }
     ];
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
@@ -168,9 +169,9 @@ function createUserInterface() {
             devTools: !!serve,
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true,
         }
     });
+    require('@electron/remote/main').enable(userInterface.webContents);
 
     if (serve) {
         require('electron-reload')(__dirname, {
@@ -205,9 +206,9 @@ function createSyncWorker() {
             backgroundThrottling: false,
             devTools: serve,
             contextIsolation: false,
-            enableRemoteModule: true,
         }
     });
+    require('@electron/remote/main').enable(syncWorker.webContents);
     // noinspection JSIgnoredPromiseFromCall
     syncWorker.loadURL(url.format({
         pathname: path.join(__dirname, 'src', 'sync-worker.html'),
