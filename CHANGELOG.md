@@ -1,3 +1,7 @@
+## 1.4.2
+### Fixed
+* Fixed compilation error.
+
 ## 1.4.1
 ### Fixed
 * Fixed Let's Encrypt certificate compatibility.

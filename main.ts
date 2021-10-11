@@ -8,7 +8,8 @@ import {
     screen,
     shell
 } from 'electron';
-require('@electron/remote/main').initialize();
+import * as remoteMain from '@electron/remote/main';
+remoteMain.initialize();
 import * as path from 'path';
 import * as url from 'url';
 import {EVENTS, MENU_ITEMS} from './src/constants';
@@ -171,7 +172,7 @@ function createUserInterface() {
             contextIsolation: false,
         }
     });
-    require('@electron/remote/main').enable(userInterface.webContents);
+    remoteMain.enable(userInterface.webContents);
 
     if (serve) {
         require('electron-reload')(__dirname, {
@@ -208,7 +209,7 @@ function createSyncWorker() {
             contextIsolation: false,
         }
     });
-    require('@electron/remote/main').enable(syncWorker.webContents);
+    remoteMain.enable(syncWorker.webContents);
     // noinspection JSIgnoredPromiseFromCall
     syncWorker.loadURL(url.format({
         pathname: path.join(__dirname, 'src', 'sync-worker.html'),
