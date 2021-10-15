@@ -1,0 +1,188 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    height: 55px;
+    font-size: 16px;
+    z-index: 1;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+    width: 100%;
+
+    .navbar-nav.left-navigation {
+        .nav-link.active {
+            color: white;
+        }
+    }
+
+    .navbar-brand {
+        font-size: 2rem;
+        display: inline-block;
+        padding: 0;
+        width: auto;
+        height: 100%;
+        line-height: 2;
+    }
+
+    .navbar-toggler {
+        font-size: 2rem;
+    }
+
+    .navbar-collapse {
+        &.collapse {
+            &.show {
+                height: 100%;
+                transition: height .35s ease;
+            }
+        }
+
+        .nav-tabs {
+            flex-wrap: nowrap;
+            padding-left: 30px;
+            border-bottom: 0;
+            border-left: 2px solid grey;
+            margin-left: 20px;
+            max-width: calc(100vw - 480px);
+            overflow: auto;
+            overflow-y: hidden;
+
+            &::-webkit-scrollbar {
+                max-height: 3px;
+
+                &-track {
+                    background: #494C56;
+                }
+
+                &-thumb {
+                    background: darkgray;
+                }
+            }
+
+            .add-tab {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                padding: 0 5px;
+            }
+
+            .nav-item {
+                position: relative;
+
+                &.disabled {
+                    a {
+                        color: gray;
+                    }
+
+                    &:hover {
+                        cursor: not-allowed;
+                    }
+
+                    &:not(.active):hover {
+                        background: none;
+                    }
+                }
+
+                .nav-link {
+                    display: flex;
+                    background: none;
+                    border: 0;
+                    padding: 8px 10px 8px 15px;
+
+                    .close-wrapper {
+                        display: flex;
+                        align-items: center;
+                        margin-left: 20px;
+
+                        .close-tab {
+                            font-size: 20px;
+                        }
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+
+                    &.active {
+                        color: #dbdcdc;
+                    }
+                }
+
+                &.active {
+                    background: #50505a;
+                    font-weight: bold;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                }
+
+                &:not(.active):hover {
+                    background: #40404a;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                &.active + li:after {
+                    display: none;
+                }
+
+                &:not(.active):after {
+                    content: "";
+                    display: flex;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    height: 25px;
+                    width: 1px;
+                    background: grey;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+
+    a {
+        color: #acadb2;
+    }
+
+    .img-avatar {
+        img {
+            width: auto;
+            height: 3rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .nav-item {
+            .nav-link {
+                border-top: none;
+            }
+        }
+        .user-navbar {
+            display: inline-flex;
+            flex-direction: row;
+
+            li a {
+                display: flex;
+                align-items: center;
+                height: 100%;
+
+                .material-icons {
+                    font-size: 28px;
+                }
+            }
+
+            .nav-link {
+                line-height: 2;
+                cursor: pointer;
+            }
+
+            .nav-menu-link {
+                cursor: default;
+            }
+
+        }
+    }
+}
+
+.material-icons:hover {
+    cursor: pointer;
+}

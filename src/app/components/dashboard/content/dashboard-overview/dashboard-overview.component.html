@@ -1,0 +1,3 @@
+<ng-container *ngIf="routeData$ | async as routeData">
+    <app-dash-home [loginId]="routeData.loginId"></app-dash-home>
+</ng-container>

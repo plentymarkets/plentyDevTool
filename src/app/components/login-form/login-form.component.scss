@@ -1,0 +1,53 @@
+.login-form-logo {
+    height: 63px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    width: 100%;
+    background: url(../../../assets/images/plentymarkets-logo.png) no-repeat;
+    background-size: contain;
+}
+
+.input-group-prepend {
+    .input-group-text {
+        border: 0;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        background-color: #008ebd;
+        color: #ffffff !important;
+    }
+}
+
+select,
+input {
+    border-radius: 0;
+    border-color: #E0E0E0;
+}
+
+select {
+    border-radius: 0;
+    border: 0;
+    outline: 1px solid lightgrey;
+    outline-offset: -1px;
+    height: 38px;
+}
+
+input[type="text"], input[type="password"] {
+    height: 40px;
+    border: 1px solid #ededed;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    &:focus {
+        box-shadow: none;
+        border: 1px solid lightgrey;
+    }
+}
+
+.noMargin {
+    margin: 0;
+}
+
+.btn-primary {
+    border-radius: 5px;
+    padding: 8px 30px;
+}

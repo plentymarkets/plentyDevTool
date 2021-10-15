@@ -1,0 +1,60 @@
+<div class="left-bar">
+
+<div class="toolbar bg-dark">
+    <div class="d-flex">
+        <button class="btn plenty-terra-button reload-btn" (click)="pluginService.loadPluginSetsWithPlugins()" type="button" placement="bottom"
+                ngbTooltip="{{ 'misc.reload' | translate }}">
+            <span class="icon-refresh"></span>
+        </button>
+        <button (click)="expand()" class="btn plenty-terra-button" type="button" placement="bottom" ngbTooltip="{{ 'misc.expand' | translate }}">
+            <span class="icon-collapse_down"></span>
+        </button>
+        <button (click)="collapse()" class="btn plenty-terra-button" type="button" placement="bottom" ngbTooltip="{{ 'misc.collapse' | translate }}">
+            <span class="icon-collapse_up"></span>
+        </button>
+    </div>
+</div>
+
+<div class="plugin-sets bg-dark">
+    <div *ngIf="!pluginSets || pluginSets.length === 0" class="text-white text-center mt-3">
+        <span>{{ 'misc.load' | translate}}</span>
+    </div>
+    <div *ngIf="!!pluginSets && pluginSets.length > 0" class="plugin-set-bar">
+        <div *ngFor="let pluginSet of pluginSets">
+            <div (click)="isExpanded[pluginSet.id] = !isExpanded[pluginSet.id]"
+                 [class.active]="isExpanded[pluginSet.id]"
+                 class="card-header d-flex justify-content-between p-0">
+                <a [attr.aria-expanded]="!isExpanded[pluginSet.id]" class="px-3 py-2"
+                   href="javascript:void(0);">
+                    <span class="font-weight-bold">{{pluginSet.id}}</span> {{pluginSet.name}}
+                    <span [class.icon-listing_type_shop]="pluginSet.webstores.length > 0"
+                        placement="left"
+                        ngbTooltip="{{ 'misc.pluginSetLinkedWebshops' | translate:{ webshops: getWebstoresNames(pluginSet.webstores) } }}"
+                        class="pull-right">&nbsp;</span>
+                </a>
+                <span *ngIf="pluginSet.plugins.length > 0" [class.icon-collapse_down]="!isExpanded[pluginSet.id]"
+                      [class.icon-collapse_up]="isExpanded[pluginSet.id]"
+                      class="icon-right"></span>
+            </div>
+            <div [hidden]="!isExpanded[pluginSet.id]">
+                <ul class="plugin-list list-unstyled pl-3 m-0">
+                    <li *ngFor="let plugin of pluginSet.plugins">
+                        <div class="d-flex justify-content-between">
+                            <a class="d-inline-block p-2">
+                                {{plugin.name}}
+                            </a>
+                            <input
+                                (click)="toggle({pluginSetId: pluginSet.id, pluginName: plugin.name, pluginId: plugin.id})"
+                                [checked]="!!syncSelectionService.findEntry(
+                                    {pluginSetId: pluginSet.id, pluginName: plugin.name, pluginId: plugin.id}
+                                           )"
+                                type="checkbox">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

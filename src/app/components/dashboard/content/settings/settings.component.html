@@ -1,0 +1,3 @@
+<ng-container *ngIf="routeData$ | async as routeData">
+    <app-path-config [loginId]="routeData.loginId"></app-path-config>
+</ng-container>

@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-md bg-dark p-0">
+    <a class="navbar-brand bg-danger text-white px-3 pb-0" href="#"><span class="icon-referrer_backend"></span></a>
+    <button (click)="toggleCollapse()" class="navbar-toggler" [class.collapsed]="!isCollapsed" type="button"
+            data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="icon-burger text-white"></span>
+    </button>
+    <div class="navbar-collapse collapse" [class.show]="isCollapsed" id="navbarNav" *ngIf="isLoaded">
+        <ul class="navbar-nav left-navigation">
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="isDashboardActive() ? 'active' : ''" href="#"
+                   [routerLink]="['/dashboard', loginId]" routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact:true}">
+                    <span class="icon-grid mr-1 align-middle"></span>
+                    {{ 'nav.dashboard' | translate }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="isSettingsActive() ? 'active' : ''" href="#"
+                   [routerLink]="['/dashboard', loginId, 'settings']" routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact:true}">
+                    <span class="icon-settings mr-1 align-middle"></span>
+                    {{ 'nav.setting' | translate }}
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-tabs mr-auto" role="tablist">
+            <li class="nav-item" [class.disabled]="!syncSelectionService.isSelectionLoaded"
+                *ngFor="let user of loggedInUsers" [ngClass]="user === loginId ? 'active' : ''">
+                <ng-container *ngIf="user">
+                    <a class="nav-link" [ngClass]="user === loginId ? 'active' : ''"
+                       (click)="switchUserById(user)">
+                        {{user}}
+                        <a class="close-wrapper" (click)="loginService.logoutById(user)"><span
+                                class="material-icons align-middle close-tab">close</span></a>
+                    </a>
+                </ng-container>
+            </li>
+            <li class="nav-item" (click)="$event.stopPropagation()">
+                <a (click)="openDialog()"><span class="material-icons align-middle add-tab">add_circle</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav user-navbar">
+            <li class="nav-item">
+                <ng-template #plentyDomain style="font-size:10px!important">
+                    {{ 'cred.openExternal' | translate:{plentyURL: webstoreName} }}
+                    <br>
+                </ng-template>
+                <a class="nav-link open-link" href="javascript:void(0);" (click)="openExternalLink(domain);"
+                   [ngbTooltip]="plentyDomain" placement="auto">
+                    <span class="material-icons align-middle close-tab">launch</span>
+                </a>
+            </li>
+            <li class="nav-item gravatar-wrapper">
+                <a class="nav-link py-0 px-2 nav-menu-link">
+                    <img class="rounded-circle" src="{{gravatar}}" width="auto" height="30">
+                </a>
+            </li>
+            <li class="nav-item logout-wrapper">
+                <a class="nav-link" href="javascript:void(0);" (click)="loginService.logout();"
+                   [ngbTooltip]="loggedInUsers.length > 1 ? ('nav.logoutAllUsers' | translate) : ('nav.logout' | translate)"
+                   placement="auto">
+                    <span class="material-icons">power_settings_new</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

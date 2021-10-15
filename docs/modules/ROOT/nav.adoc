@@ -1,0 +1,4 @@
+* xref:plentydevtool-introduction.adoc[plentyDevTool introduction]
+* xref:plentydevtool-contribution-guidelines.adoc[plentyDevTool contribution guidelines]
+* xref:plentydevtool-guide.adoc[plentyDevTool guide]
+* xref:plentydevtool-version-control.adoc[How to use plentyDevTool with version control]

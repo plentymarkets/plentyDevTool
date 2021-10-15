@@ -1,0 +1,4 @@
+provider: s3
+bucket: download.plentybase.de
+path: plentydevtool
+region: eu-central-1

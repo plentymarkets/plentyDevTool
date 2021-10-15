@@ -1,0 +1,45 @@
+app-left-bar {
+    position: fixed;
+    left: 0;
+    top: 55px;
+    width: 50%;
+    height: 100vh;
+    background-color: #2f323a;
+    color: #FFFFFF;
+    @media (min-width: 576px) {
+        width: 40%;
+    }
+
+    @media (min-width: 768px) {
+        width: 30%;
+    }
+
+    @media (min-width: 992px) {
+        width: 25%;
+    }
+}
+
+app-content {
+    position: fixed;
+    top: 55px;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    width: 50%;
+    overflow-y: auto;
+
+    @media (min-width: 576px) {
+        width: 60%;
+        left: 40%;
+    }
+
+    @media (min-width: 768px) {
+        width: 70%;
+        left: 30%;
+    }
+
+    @media (min-width: 992px) {
+        width: 75%;
+        left: 25%;
+    }
+}

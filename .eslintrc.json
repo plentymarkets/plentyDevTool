@@ -1,0 +1,80 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "kebab-case",
+            "type": "element"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "style": "camelCase",
+            "type": ["element", "attribute"]
+          }
+        ],
+        "max-len": ["error", {"code": 150}],
+        "no-empty": ["error", { "allowEmptyCatch": true }],
+        "default-case": "error",
+        "eqeqeq": ["error", "always"],
+        "no-else-return": "error",
+        "no-lone-blocks": "error",
+        "no-multi-spaces": "error",
+        "no-sequences": "error",
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+        "keyword-spacing": ["error", { "before": true, "after": true }],
+        "eol-last": ["error", "always"],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "no-mixed-spaces-and-tabs": "error",
+        "no-multiple-empty-lines": "error",
+        "no-trailing-spaces": "error",
+        "space-before-blocks": "error",
+        "quotes": ["error", "single"]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {
+        "max-len": ["error", {"code": 150}],
+        "eqeqeq": ["error", "always"],
+        "no-multi-spaces": "error",
+        "no-sequences": "error",
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+        "keyword-spacing": ["error", { "before": true, "after": true }],
+        "eol-last": ["error", "always"],
+        "no-mixed-spaces-and-tabs": "error",
+        "no-multiple-empty-lines": "error",
+        "no-trailing-spaces": "error",
+        "quotes": ["error", "single"]
+      }
+    }
+  ]
+}
