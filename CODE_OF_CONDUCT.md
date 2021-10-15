@@ -10,7 +10,7 @@ We pledge to act and interact in ways that contribute to an open, welcoming, div
 
 ## Enforcement
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please email us at conduct@mail.com.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please email us at plugin-core@plentymarkets.com.
 
 ## Enforcement Guidelines
 
