@@ -1,4 +1,5 @@
 = plentyDevTool user guide
+:page-aliases: main@developers:plentydevtool:plentydevtool-guide.adoc
 
 plentyDevTool helps you streamline your plugin development workflow. Synchronise your local files with the ones on your plentymarkets system.
 

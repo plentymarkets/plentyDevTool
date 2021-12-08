@@ -1,8 +1,9 @@
 = Plugin development enters the next level
+:page-aliases: main@developers:plentydevtool:plentydevtool-introduction.adoc
 
 Using plentyDevTool you can work on all open source plugins you’ve installed in your plentymarkets system from plentyMarketplace. Download the plugins, edit them locally and upload them back to your system. Of course you can also create plugins from scratch locally and upload them afterwards.
 
-link:https://marketplace.plentymarkets.com/plugins/integration/plentydevtool_6652[Download plentyDevTool on plentyMarketplace^.]
+link:https://marketplace.plentymarkets.com/plugins/integration/plentydevtool_6652[Download plentyDevTool on plentyMarketplace.^]
 
 == Demonstration
 
