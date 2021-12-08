@@ -1,4 +1,5 @@
 = plentyDevTool and version control
+:page-aliases: main@developers:plentydevtool:plentydevtool-version-control.adoc
 
 plentyDevTool itself doesn't support version control. If you want to record the changes you make to your plugin, you have to use an external version control system like GitHub. This is recommended in case something goes wrong during development and you want to restore a previous version of your plugin.
 
