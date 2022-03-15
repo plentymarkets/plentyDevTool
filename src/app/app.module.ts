@@ -81,9 +81,6 @@ const DRIVE_MODULES = [
             }
         }),
     ],
-    entryComponents: [
-        BusyModalComponent
-    ],
     providers: [
         ElectronService,
         LoginService,
