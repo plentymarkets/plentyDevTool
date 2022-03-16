@@ -55,7 +55,7 @@ export class LeftBarComponent implements OnChanges, OnDestroy {
                 if (currentAction && currentAction !== BusyTypeEnum.PROCESS_LOADING && !this.modal) {
                     this.modal = this.modalService.open(BusyModalComponent, {
                         backdrop: 'static',
-                        windowClass: 'show',
+                        windowClass: 'show actions-modal',
                         backdropClass: 'transparent',
                         centered: true,
                         keyboard: false,

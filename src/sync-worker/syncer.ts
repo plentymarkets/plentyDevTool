@@ -421,19 +421,15 @@ export class Syncer {
     }
 
     private unzip(localFilePath: string, timestamp: number, cb) {
-        unzip(localFilePath, {dir: path.dirname(localFilePath)}, ((error: Error) => {
-            if (error) {
-                cb(error);
-            } else {
-                log.debug('Unzipped', localFilePath);
-                fse.remove(localFilePath).then(() => {
-                    const fileList = this.getFileList(path.dirname(localFilePath));
-                    log.debug('Add unzipped files to database', fileList);
-                    fileList.forEach((filePath: string) => this.database.addFile(filePath));
-                    this.startNextJob(timestamp);
-                });
-            }
-        }));
+        unzip(localFilePath, {dir: path.dirname(localFilePath)}).then((() => {
+            log.debug('Unzipped', localFilePath);
+            fse.remove(localFilePath).then(() => {
+                const fileList = this.getFileList(path.dirname(localFilePath));
+                log.debug('Add unzipped files to database', fileList);
+                fileList.forEach((filePath: string) => this.database.addFile(filePath));
+                this.startNextJob(timestamp);
+            });
+        })).catch((error: Error) => cb(error));
     }
 
     private getFileList(directoryPath: string, filePathList = []) {
