@@ -72,6 +72,11 @@ export class NavBarComponent implements OnChanges {
         }
     }
 
+    public orderChanged(systemTabs: Array<string>): void {
+        StorageService.sortUsers(systemTabs);
+        this.loggedInUsers = systemTabs;
+    }
+
     private initData(): void {
         this.domain = StorageService.getUserData(this.loginId).domain;
         this.webstoreName = this.domain.replace(/^https?:\/\/(www\.)?/, '');

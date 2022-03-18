@@ -135,6 +135,28 @@ export class StorageService {
         return usersIds;
     }
 
+    public static sortUsers(loggedInUsers: Array<string>) {
+        const loginData: Array<LoginDataInterface> = JSON.parse(
+            localStorage.getItem(StorageKey.LOGIN_DATA)
+        );
+        if (!loginData) {
+            return;
+        }
+
+        const sortedLoginData: Array<LoginDataInterface> = [];
+        loggedInUsers.forEach((userId: string) => {
+            const userData: LoginDataInterface = loginData.find((data: LoginDataInterface) => data.id === userId);
+            if (userData) {
+                sortedLoginData.push(userData);
+            }
+        });
+
+        localStorage.setItem(
+            StorageKey.LOGIN_DATA,
+            JSON.stringify(sortedLoginData)
+        );
+    }
+
     public static setSyncAttributes(
         id: string,
         syncPath: string,

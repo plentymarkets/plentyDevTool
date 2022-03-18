@@ -25,7 +25,7 @@
     "test": "npm run postinstall && ng test",
     "test-headless": "npm run postinstall && ng test --watch=false --browsers ChromeHeadlessNoSandbox",
     "reinstall": "rm -rf node_modules/ && npm i",
-    "lint": "eslint src/environments/**/* src/**/*.ts",
+    "lint": "eslint --no-error-on-unmatched-pattern src/*",
     "//": "following commands are used only for production",
     "build:prod": "npm run build -- -c production",
     "electron:local": "npm run build:prod && electron .",
