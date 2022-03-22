@@ -18,6 +18,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginService {
     public isFromDashboard: BehaviorSubject<boolean>;
+    public isLoginLoading: boolean = false;
     private loginId: string;
 
     constructor(
@@ -68,6 +69,7 @@ export class LoginService {
         credentials: CredentialsInterface,
         cb: (error: HttpErrorResponse) => void
     ) {
+        this.isLoginLoading = true;
         this.httpClient
             .post<LoginResponseInterface>(
                 +credentials.plentyId > 1000
@@ -144,12 +146,14 @@ export class LoginService {
                         }
                         this.router.navigate([initPath]);
                         this.isFromDashboard.next(true);
+                        this.isLoginLoading = false;
                     }
                 },
                 // status 401
                 (error: HttpErrorResponse) => {
                     LogService.info('Login error', error);
                     cb(error);
+                    this.isLoginLoading = false;
                 }
             );
     }

@@ -17,6 +17,15 @@
     }
 }
 
+.form-inline-icon {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    color: #757576 !important;
+    cursor: pointer;
+    z-index: 50;
+}
+
 select,
 input {
     border-radius: 0;

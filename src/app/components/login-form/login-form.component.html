@@ -53,12 +53,15 @@
             </div>
             <input
                 [(ngModel)]="credentials.password"
+                [type]="passwordFieldType"
                 class="form-control form-control-sm"
                 id="inputPassword"
                 name="inputPassword"
                 placeholder="{{'cred.placePwd' | translate}}"
-                required
-                type="password">
+                required>
+            <a (click)="_changePasswordFieldType()" class="form-inline-icon">
+                <span class="material-icons">{{ passwordFieldType === passwordType ? 'visibility_off' : 'visibility' }}</span>
+            </a>
         </div>
     </div>
     <div class="form-group">
@@ -103,7 +106,10 @@
         <p>{{ validationErrorCloud }}</p>
     </div>
     <div class="text-right">
-        <button (keydown.enter)="onSubmit(loginForm)" class="btn btn-primary btn-sm" type="submit">
+        <div *ngIf="loginService.isLoginLoading" class="loader"></div>
+        <button (keydown.enter)="onSubmit(loginForm)"
+                [disabled]="loginService.isLoginLoading"
+                class="btn btn-primary btn-sm" type="submit">
             {{'cred.submit' | translate}}
         </button>
     </div>
