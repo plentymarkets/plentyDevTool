@@ -1,5 +1,5 @@
 import * as Factory from 'factory.ts';
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { LoginDataInterface } from './loginData.interface';
 
 export function loginDataInterfaceFactory(): Factory.Factory<

@@ -1,32 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
-@import "assets/styles/custom.scss";
-@import "assets/styles/icon.glob.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import 'assets/styles/custom.scss';
+@import 'assets/styles/icon.glob.scss';
 
 // Font, line-height, and color for body text, headings, and more.
 @font-face {
-    font-family: "plentyicons";
-    src: url("assets/fonts/plentyicons.eot?z8douy");
-    src: url("assets/fonts/plentyicons.eot?z8douy#iefix")
-            format("embedded-opentype"),
-        url("assets/fonts/plentyicons.ttf?z8douy") format("truetype"),
-        url("assets/fonts/plentyicons.woff?z8douy") format("woff"),
-        url("assets/fonts/plentyicons.svg?z8douy#plentyicons") format("svg");
+    font-family: 'plentyicons';
+    src: url('assets/fonts/plentyicons.eot?z8douy');
+    src: url('assets/fonts/plentyicons.eot?z8douy#iefix')
+            format('embedded-opentype'),
+        url('assets/fonts/plentyicons.ttf?z8douy') format('truetype'),
+        url('assets/fonts/plentyicons.woff?z8douy') format('woff'),
+        url('assets/fonts/plentyicons.svg?z8douy#plentyicons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Roboto";
-    src: url("assets/fonts/Roboto-Regular-webfont.woff") format("woff");
+    font-family: 'Roboto';
+    src: url('assets/fonts/Roboto-Regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-'] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: "plentyicons" !important;
+    font-family: 'plentyicons' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -45,7 +45,7 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    font-family: "Roboto", sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     background-color: #e9eaec;
 
     .container-fluid {
