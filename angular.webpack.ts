@@ -1,10 +1,8 @@
-/**
- * Custom angular webpack configuration
- */
+import { CustomWebpackBrowserSchema } from '@angular-builders/custom-webpack';
+import * as webpack from 'webpack';
 
-module.exports = (config, options) => {
+export default (config: webpack.Configuration, options: CustomWebpackBrowserSchema) => {
     config.target = 'electron-renderer';
-
 
     if (options.fileReplacements) {
         for(let fileReplacement of options.fileReplacements) {
@@ -21,4 +19,4 @@ module.exports = (config, options) => {
     }
 
     return config;
-}
+};

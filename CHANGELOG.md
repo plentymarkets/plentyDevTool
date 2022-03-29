@@ -1,3 +1,10 @@
+## 1.5.0
+### New
+* Improved security and stability by updating to Angular 13.
+* You can now view your password during login by clicking on the eye icon.
+* There's now a loading spinner during login.
+* You can now change the order of the system tabs.
+
 ## 1.4.2
 ### Fixed
 * Fixed compilation error.

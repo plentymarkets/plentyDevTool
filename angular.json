@@ -30,7 +30,7 @@
             ],
             "scripts": [],
             "customWebpackConfig": {
-              "path": "./angular.webpack.js"
+              "path": "./angular.webpack.ts"
             },
             "vendorChunk": true,
             "extractLicenses": false,
@@ -103,7 +103,7 @@
           }
         },
         "test": {
-          "builder": "@angular-builders/custom-webpack:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills-test.ts",
@@ -113,9 +113,6 @@
             "styles": [
               "src/styles.scss"
             ],
-            "customWebpackConfig": {
-              "path": "./angular.webpack.js"
-            },
             "assets": [
               "src/assets",
               "src/favicon.ico",
