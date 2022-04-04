@@ -1,7 +1,10 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*"
+    "projects/**/*",
+    "*.json",
+    "*.map",
+    "*.scss"
   ],
   "overrides": [
     {

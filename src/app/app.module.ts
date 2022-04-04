@@ -34,6 +34,7 @@ import { DashboardOverviewComponent } from './components/dashboard/content/dashb
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LoginDialogComponent } from './components/dashboard/login-dialog/login-dialog.component';
 import { NotificationModalComponent } from './components/dashboard/notification-modal/notification-modal.component';
+import { SortableDirective } from './providers/sortable.directive';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +57,9 @@ const DRIVE_COMPONENTS = [
     DashHomeComponent,
     SettingsComponent,
     LoginFormComponent,
-    LoginComponent
+    LoginComponent,
+
+    SortableDirective
 ];
 
 const DRIVE_MODULES = [
@@ -81,8 +84,8 @@ const DRIVE_MODULES = [
             }
         }),
     ],
-    entryComponents: [
-        BusyModalComponent
+    exports: [
+        SortableDirective
     ],
     providers: [
         ElectronService,

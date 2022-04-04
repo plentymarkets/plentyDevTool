@@ -4,7 +4,7 @@ import { NotificationService } from './notification.service';
 import { MockElectronService } from './electron.service.mock';
 import { ElectronService } from './electron.service';
 
-fdescribe('NotificationService', () => {
+describe('NotificationService', () => {
     let mockElectronService: MockElectronService;
     beforeEach(() => {
         mockElectronService = new MockElectronService();

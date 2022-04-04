@@ -25,17 +25,19 @@
             </li>
         </ul>
         <ul class="nav nav-tabs mr-auto" role="tablist">
-            <li class="nav-item" [class.disabled]="!syncSelectionService.isSelectionLoaded"
-                *ngFor="let user of loggedInUsers" [ngClass]="user === loginId ? 'active' : ''">
-                <ng-container *ngIf="user">
-                    <a class="nav-link" [ngClass]="user === loginId ? 'active' : ''"
-                       (click)="switchUserById(user)">
-                        {{user}}
-                        <a class="close-wrapper" (click)="loginService.logoutById(user)"><span
-                                class="material-icons align-middle close-tab">close</span></a>
-                    </a>
-                </ng-container>
-            </li>
+            <div class="d-flex" sortableTabs (orderChanged)="orderChanged($event)">
+                <li class="nav-item" [class.disabled]="!syncSelectionService.isSelectionLoaded"
+                    *ngFor="let user of loggedInUsers" [ngClass]="user === loginId ? 'active' : ''" data-id="{{ user }}">
+                    <ng-container *ngIf="user">
+                        <a class="nav-link" [ngClass]="user === loginId ? 'active' : ''"
+                           (click)="switchUserById(user)">
+                            {{user}}
+                            <a class="close-wrapper" (click)="loginService.logoutById(user)"><span
+                                    class="material-icons align-middle close-tab">close</span></a>
+                        </a>
+                    </ng-container>
+                </li>
+            </div>
             <li class="nav-item" (click)="$event.stopPropagation()">
                 <a (click)="openDialog()"><span class="material-icons align-middle add-tab">add_circle</span></a>
             </li>

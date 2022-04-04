@@ -17,6 +17,7 @@ export class LoginFormComponent implements OnInit {
     private ownCloud = 'ownCloud';
     private cloudDeLogin = 'https://plentymarkets-cloud-de.com/rest/login';
     private cloudIeLogin = 'https://plentymarkets-cloud-ie.com/rest/login';
+    private textType = 'text';
 
     @Input() public systemId?: string;
 
@@ -37,10 +38,12 @@ export class LoginFormComponent implements OnInit {
     public validationErrorCloud = '';
     public showAdvanced = false;
     public ownCloudId: number;
+    public passwordType = 'password';
+    public passwordFieldType: string;
 
     constructor(
-        private loginService: LoginService,
         private router: Router,
+        public loginService: LoginService,
         public translate: TranslateService
     ) {
         if (this.router.getCurrentNavigation() && this.router.getCurrentNavigation().previousNavigation === null
@@ -51,9 +54,10 @@ export class LoginFormComponent implements OnInit {
 
     public ngOnInit(): void {
         this.credentials.plentyId = this.systemId || '';
+        this.passwordFieldType = this.passwordType;
     }
 
-    public onSubmit(form: NgForm) {
+    public onSubmit(form: NgForm): void {
         if (!form.valid) {
             return;
         }
@@ -96,7 +100,11 @@ export class LoginFormComponent implements OnInit {
         return this.router.navigate(['/dashboard', StorageService.getCurrentLoggedIn()]);
     }
 
-    public isFromDashboard() {
+    public isFromDashboard(): number {
         return StorageService.getAllUsers().length;
+    }
+
+    public _changePasswordFieldType(): void {
+        this.passwordFieldType = this.passwordFieldType === this.passwordType ? this.textType : this.passwordType;
     }
 }
