@@ -1,3 +1,7 @@
+## 1.5.1
+### New
+* The update improves security and stability.
+
 ## 1.5.0
 ### New
 * Improved security and stability by updating to Angular 13.
