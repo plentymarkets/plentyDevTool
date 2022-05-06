@@ -1,4 +1,4 @@
-name: lint-test-build
+name: Build
 
 on: [pull_request]
 
@@ -22,3 +22,11 @@ jobs:
     - run: npm run build:prod
       env:
         CI: true
+
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+        - name: Dependency Review
+          uses: actions/dependency-review-action@v1
