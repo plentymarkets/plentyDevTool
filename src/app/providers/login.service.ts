@@ -12,6 +12,8 @@ import { ElectronService } from './electron.service';
 import { LoginDataInterface } from './interfaces/loginData.interface';
 import { StorageKey } from './enums/storageKey.enum';
 import { BehaviorSubject } from 'rxjs';
+import { AlertService } from './alert.service';
+import { AlertTypeEnum } from './enums/alert-type.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -27,7 +29,8 @@ export class LoginService {
         private router: Router,
         private syncService: SyncService,
         private pluginService: PluginService,
-        private electronService: ElectronService
+        private electronService: ElectronService,
+        private _alertService: AlertService
     ) {
         this.isFromDashboard = new BehaviorSubject(false);
     }
@@ -154,6 +157,9 @@ export class LoginService {
                     LogService.info('Login error', error);
                     cb(error);
                     this.isLoginLoading = false;
+                    if (error.status === 401) {
+                        this._alertService.addAlert(AlertTypeEnum.danger, error);
+                    }
                 }
             );
     }

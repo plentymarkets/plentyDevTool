@@ -3,18 +3,18 @@
     <div class="plenty-top-base-wrapper justify-content-end">
         <div>
             <button (click)="syncService.detectNewPlugins()" [class.disabled]="isLoading || selectedPath.length <= 0 || pluginSets.length <= 0"
-                    class="btn plenty-terra-button highlighted-yellow"
+                    class="btn plenty-terra-button"
                     type="button">
                 <span class="icon-plugin"></span>   {{ 'sync.detectNewPlugins' | translate }}
             </button>
             <button (click)="syncService.pull()" [class.disabled]="isLoading || selectedPath.length <= 0 || pluginSets.length <= 0"
-                    class="btn plenty-terra-button highlighted-yellow"
+                    class="btn plenty-terra-button"
                     type="button">
                 <span class="icon-plugin_pull"></span>{{ 'sync.pull' | translate }}
             </button>
             <button (click)="syncService.push()" [class.disabled]="isLoading || selectedPath.length <= 0 ||
                                                   changes.length <= 0 || pluginSets.length <= 0"
-                    class="btn plenty-terra-button highlighted-yellow"
+                    class="btn plenty-terra-button"
                     type="button">
                 <span class="icon-plugin_push"></span>{{ 'sync.push' | translate }}
             </button>
@@ -30,15 +30,15 @@
             {{ 'misc.and' | translate }} {{ 'fs.path.select' | translate }}.
         </div>
 
-        <ngb-alert [dismissible]="false" [type]="'warning'" *ngIf="changesWithForbiddenCharacters.length > 0">
-            <h4 class="alert-heading">{{ 'misc.changesContainingForbiddenChars' | translate }}</h4>
+        <div *ngIf="changesWithForbiddenCharacters.length > 0" class="alert alert-warning pt-2 pb-2" role="alert">
+            <h5 class="alert-heading">{{ 'misc.changesContainingForbiddenChars' | translate }}</h5>
             <ul>
                 <li *ngFor="let forbiddenChange of changesWithForbiddenCharacters">
                     {{forbiddenChange.path}}
                 </li>
             </ul>
             {{ 'misc.forbiddenCharList' | translate:forbiddenCharactersParams }}
-        </ngb-alert>
+        </div>
 
         <div *ngIf="!!buildResult" class="alert" [ngClass]="{
         'alert-success': buildResult?.buildExecuted && buildSuccess,
@@ -52,7 +52,7 @@
                     <div [innerHTML]="'build.success' | translate"></div>
                 </ng-template>
                 <ng-template #noSuccess>
-                    <h4 class="alert-heading">{{ 'build.error' | translate }}</h4>
+                    <h5 class="alert-heading">{{ 'build.error' | translate }}</h5>
                     <p *ngFor="let error of buildResult?.buildErrors">{{error}}</p>
                 </ng-template>
             </div>
@@ -70,30 +70,35 @@
             <div [innerHTML]="'build.fullBuild' | translate"></div>
         </div>
 
-        <ngb-alert *ngIf="successMessage !== ''" type="success"
-                   (close)="closeMessage()">{{ successMessage }}</ngb-alert>
+        <div *ngIf="successMessage !== ''" class="alert alert-success" role="alert">
+            <div class="message-content">
+                <span>{{ successMessage }}</span>
+                <button type="button" class="btn ml-auto" (click)="closeMessage()">
+                    <span class="material-icons d-block alert-success">clear</span>
+                </button>
+            </div>
+        </div>
 
         <div *ngIf="isLoading" class="alert-info p-2">
-            <h4 class="alert-heading">
+            <h5 class="alert-heading">
                 <div class="loader"></div>
                 {{ 'sync.working' | translate }}
-            </h4>
+            </h5>
             <p class="ml-3">{{ loadingPlugins }}</p>
         </div>
 
-        <div class="install-plugin-wrapper" *ngIf="!!newPlugins">
-            <div *ngFor="let newPlugin of newPlugins" class="plenty-base-wrapper d-flex justify-content-between">
-                <div class="mr-auto">
+        <div class="mt-1" *ngIf="!!newPlugins">
+            <div class="alert alert-light" role="alert" *ngFor="let newPlugin of newPlugins">
+                <div class="message-content">
                     <button (click)="installPlugin(newPlugin)" type="button"
-                            class="btn plenty-terra-button highlighted-green">
+                            class="btn plenty-terra-button">
                         <span class="icon-upload"></span>{{ 'sync.install' | translate }}
                     </button>
                     <span class="ml-3">{{getPluginSetName(newPlugin.pluginSetId)}}/{{newPlugin.pluginName}}</span>
+                    <button type="button" class="btn ml-auto" (click)="removeNewPluginFromList(newPlugin)">
+                        <span class="material-icons d-block">clear</span>
+                    </button>
                 </div>
-                <button (click)="removeNewPluginFromList(newPlugin)" type="button"
-                        class="btn plenty-terra-button highlighted-red">
-                    <span class="icon-close"></span>
-                </button>
             </div>
         </div>
 

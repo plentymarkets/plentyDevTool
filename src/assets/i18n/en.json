@@ -15,7 +15,7 @@
         "reload": "Reload",
         "expand": "Expand all",
         "collapse": "Collapse all",
-        "changesContainingForbiddenChars": "Changes to the following paths will not be pushed because they contain forbidden characters.",
+        "changesContainingForbiddenChars": "Changes to the following paths will not be pushed because they contain forbidden characters:",
         "forbiddenCharList": "Forbidden characters are {{ signs }} and any ASCII character from {{ asciiStart }} to {{ asciiStop }} (decimal)."
     },
     "sync": {

@@ -35,6 +35,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { LoginDialogComponent } from './components/dashboard/login-dialog/login-dialog.component';
 import { NotificationModalComponent } from './components/dashboard/notification-modal/notification-modal.component';
 import { SortableDirective } from './providers/sortable.directive';
+import { AlertMessageComponent } from './components/alert-message/alert-message.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 const DRIVE_COMPONENTS = [
     AppComponent,
+    AlertMessageComponent,
 
     DashboardComponent,
     LeftBarComponent,
