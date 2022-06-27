@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, ChangeDetectorRef } from '@angular/core';
 import { shell } from 'electron';
 import { StorageService } from '../../../providers/storage.service';
 import { UserService } from '../../../providers/user.service';
@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationModalComponent } from '../notification-modal/notification-modal.component';
+import { AlertService } from '../../../providers/alert.service';
 
 @Component({
     selector: 'app-nav-bar',
@@ -27,11 +28,13 @@ export class NavBarComponent implements OnChanges {
     @Input() public loginId: string;
 
     constructor(
-        private userService: UserService,
-        private router: Router,
         private modalService: NgbModal,
         public loginService: LoginService,
-        public syncSelectionService: SyncSelectionService
+        public syncSelectionService: SyncSelectionService,
+        private userService: UserService,
+        private router: Router,
+        private alertService: AlertService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
 
     public ngOnChanges(): void {
@@ -107,5 +110,6 @@ export class NavBarComponent implements OnChanges {
                 this.isLoaded = true;
             }
         );
+        this.alertService.$newAlert.subscribe(() => this.changeDetectorRef.detectChanges());
     }
 }

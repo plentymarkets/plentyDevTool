@@ -292,9 +292,16 @@ export class Watcher {
     }
 
     private publishNotSyncedPlugins() {
+        let errors: Array<string> = [];
         this.notSyncedPlugins = this.notSyncedPlugins.filter((pluginJSON: string) => {
             const directoryName = path.dirname(pluginJSON);
-            const parsedPluginJson = fse.readJsonSync(pluginJSON);
+            let parsedPluginJson;
+            try {
+                parsedPluginJson = fse.readJsonSync(pluginJSON);
+            } catch (error) {
+                errors.push(error.message);
+            }
+
             if (
                 !parsedPluginJson ||
                 !parsedPluginJson.hasOwnProperty('name') ||
@@ -303,11 +310,7 @@ export class Watcher {
                 return false;
             }
 
-            if (!directoryName.endsWith(path.sep + parsedPluginJson.name)) {
-                return false;
-            }
-
-            return true;
+            return directoryName.endsWith(path.sep + parsedPluginJson.name);
         });
 
         log.debug('Not synced plugin.jsons found', this.notSyncedPlugins);
@@ -323,6 +326,10 @@ export class Watcher {
                     pluginSetId: parts.pop()
                 };
             }));
+
+        if (errors.length > 0) {
+            ipcRenderer.sendTo(this.userInterfaceWebContentsId, EVENTS.watcher.fileError, errors);
+        }
     }
 
     private checkCurrentPath(filePath: string): void {

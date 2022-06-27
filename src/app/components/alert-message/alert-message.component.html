@@ -2,7 +2,7 @@
     <ng-container *ngFor="let alert of this.alertService.alerts">
         <div class="alert" [ngClass]="alert.type" role="alert">
             <div class="message-content">
-                <span>{{ alert.message }}</span>
+                <span class="alert-max-width">{{ alert.message }}</span>
                 <button type="button" class="btn ml-auto" (click)="this.alertService.removeAlert(alert)">
                     <span class="material-icons d-block" [ngClass]="alert.type">clear</span>
                 </button>
