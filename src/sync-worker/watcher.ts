@@ -178,11 +178,12 @@ export class Watcher {
             return;
         }
         if (databaseEntry && ctime > databaseEntry.timestamp && databaseEntry.filePath &&
-            this.contentChecker.isContentChanged(databaseEntry.filePath, databaseEntry.checksum)) {
-                this.addChange({
-                    changeType: ChangeType.MODIFY,
-                    path: filePath
-                });
+            this.contentChecker.isContentChanged(databaseEntry.filePath, databaseEntry.checksum)
+        ) {
+            this.addChange({
+                changeType: ChangeType.MODIFY,
+                path: filePath
+            });
         }
     }
 
