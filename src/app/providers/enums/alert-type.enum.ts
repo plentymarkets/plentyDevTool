@@ -4,5 +4,5 @@ export enum AlertTypeEnum {
     warning = 'alert-warning',
     danger = 'alert-danger',
     primary = 'alert-primary',
-    light = 'light'
+    light = 'alert-light'
 }

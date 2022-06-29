@@ -28,12 +28,12 @@ export class NavBarComponent implements OnChanges {
     @Input() public loginId: string;
 
     constructor(
-        private modalService: NgbModal,
         public loginService: LoginService,
         public syncSelectionService: SyncSelectionService,
         private userService: UserService,
         private router: Router,
         private alertService: AlertService,
+        private modalService: NgbModal,
         private changeDetectorRef: ChangeDetectorRef
     ) {}
 

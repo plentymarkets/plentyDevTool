@@ -14,7 +14,7 @@ export class PluginService {
     private readonly pluginSets: BehaviorSubject<Array<PluginSetInterface>>;
     private loginId: string;
 
-    constructor(private httpClient: HttpClient, private _alertService: AlertService) {
+    constructor(private _httpClient: HttpClient, private _alertService: AlertService) {
         this.pluginSets = new BehaviorSubject<Array<PluginSetInterface>>([]);
     }
 
@@ -25,7 +25,7 @@ export class PluginService {
     public loadPluginSetsWithPlugins() {
         this.resetList();
         this.loginId = StorageService.getCurrentLoggedIn();
-        this.httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getOpensourcePlugins)
+        this._httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getOpensourcePlugins)
             .subscribe((pluginSets: Array<PluginSetInterface>) => {
                 pluginSets.forEach((pluginSet: PluginSetInterface) => {
                     const plugins = [];
@@ -51,6 +51,6 @@ export class PluginService {
 
     public getPluginBuildOverview() {
         this.loginId = StorageService.getCurrentLoggedIn();
-        return this.httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getPluginBuildOverview);
+        return this._httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getPluginBuildOverview);
     }
 }
