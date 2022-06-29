@@ -30,7 +30,7 @@
             {{ 'misc.and' | translate }} {{ 'fs.path.select' | translate }}.
         </div>
 
-        <div *ngIf="changesWithForbiddenCharacters.length > 0" class="alert alert-warning pt-2 pb-2" role="alert">
+        <div *ngIf="changesWithForbiddenCharacters.length > 0" class="alert alert-warning" role="alert">
             <h5 class="alert-heading">{{ 'misc.changesContainingForbiddenChars' | translate }}</h5>
             <ul>
                 <li *ngFor="let forbiddenChange of changesWithForbiddenCharacters">

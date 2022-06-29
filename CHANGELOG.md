@@ -1,3 +1,15 @@
+## 1.5.2
+### New
+* The update improves security and stability.
+* From now on, plentyDevTool features additional alerts. The alerts highlight why an action may have failed.
+
+### Changed
+* The styling of various UI components has been updated.
+
+### Fixed
+* The Close icon is now displayed correctly on all elements you can close.
+* The dashboard now displays modified files correctly. Previously, files weren't displayed when they were updated without changing the timestamp, for example by replacing a file via copy and paste.
+
 ## 1.5.1
 ### New
 * The update improves security and stability.
