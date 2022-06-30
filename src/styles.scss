@@ -114,3 +114,13 @@ body {
     background-color: #636671;
     opacity: 0.4;
 }
+
+.alert {
+    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+}

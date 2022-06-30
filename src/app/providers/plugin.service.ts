@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { PluginSetInterface } from './interfaces/pluginset.interface';
 import { ROUTES } from '../../constants';
 import { StorageService } from './storage.service';
+import { AlertService } from './alert.service';
+import { AlertTypeEnum } from './enums/alert-type.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +14,7 @@ export class PluginService {
     private readonly pluginSets: BehaviorSubject<Array<PluginSetInterface>>;
     private loginId: string;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private _httpClient: HttpClient, private _alertService: AlertService) {
         this.pluginSets = new BehaviorSubject<Array<PluginSetInterface>>([]);
     }
 
@@ -23,7 +25,7 @@ export class PluginService {
     public loadPluginSetsWithPlugins() {
         this.resetList();
         this.loginId = StorageService.getCurrentLoggedIn();
-        this.httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getOpensourcePlugins)
+        this._httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getOpensourcePlugins)
             .subscribe((pluginSets: Array<PluginSetInterface>) => {
                 pluginSets.forEach((pluginSet: PluginSetInterface) => {
                     const plugins = [];
@@ -37,6 +39,9 @@ export class PluginService {
                     pluginSet.plugins = plugins;
                 });
                 this.pluginSets.next(pluginSets);
+            },
+            (error: HttpErrorResponse) => {
+                this._alertService.addAlert(AlertTypeEnum.danger, error);
             });
     }
 
@@ -46,6 +51,6 @@ export class PluginService {
 
     public getPluginBuildOverview() {
         this.loginId = StorageService.getCurrentLoggedIn();
-        return this.httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getPluginBuildOverview);
+        return this._httpClient.get(StorageService.getUserData(this.loginId).domain + ROUTES.getPluginBuildOverview);
     }
 }

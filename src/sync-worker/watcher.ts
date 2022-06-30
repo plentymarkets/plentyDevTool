@@ -17,7 +17,7 @@ import { ContentChecker } from './content-checker';
 export class Watcher {
     private watcher: FSWatcher;
     private initialScanComplete: boolean;
-    private foundOnInitialScan: Array<{ path: string, mtime: number }>;
+    private foundOnInitialScan: Array<{ path: string, ctime: number }>;
     private changes: Array<LocalChangeInterface>;
     private pathHelper: PathHelper;
     private notSyncedPlugins: Array<string>;
@@ -50,7 +50,7 @@ export class Watcher {
     }
 
     private static getTimeStamp(stats: any) {
-        return (stats && stats.mtime) ? Date.parse(stats.mtime) : null;
+        return stats?.ctime ? Date.parse(stats.ctime) : null;
     }
 
     public start(timestamp: number): void {
@@ -103,7 +103,7 @@ export class Watcher {
             });
             const containsForbiddenCharacters = Watcher.containsForbiddenCharacters(initialEntry.path);
             if (databaseEntry) {
-                if (initialEntry.mtime > databaseEntry.timestamp && this.contentChecker.isContentChanged(initialEntry.path)) {
+                if (initialEntry.ctime > databaseEntry.timestamp && this.contentChecker.isContentChanged(initialEntry.path)) {
                     this.changes.push({
                         changeType: ChangeType.MODIFY,
                         path: initialEntry.path,
@@ -129,7 +129,7 @@ export class Watcher {
                 this.checkCurrentPath(databasePath[1]);
             }
             if (this.s3KeyShouldBeSynced(this.pathHelper.s3KeyFromLocalPath(dbEntry.filePath))
-                && !this.foundOnInitialScan.some((initialEntry: { path: string, mtime: number }) => {
+                && !this.foundOnInitialScan.some((initialEntry: { path: string, ctime: number }) => {
                     return dbEntry.filePath === path.join(this.options.syncPath, initialEntry.path);
                 })) {
                 const changedPath = dbEntry.filePath.substring(this.options.syncPath.length + 1);
@@ -148,31 +148,7 @@ export class Watcher {
     }
 
     private onWatcherAdd(filePath: string, stats: Object): void {
-        if (this.localPathShouldBeSynced(filePath)) {
-            if (this.initialScanComplete) {
-                const mtime = Watcher.getTimeStamp(stats);
-                const databaseEntry: DatabaseEntryInterface = this.database.getEntry(this.pathHelper.localPathFromS3Key(filePath));
-                if (!mtime || !databaseEntry) {
-                    this.addChange({
-                        changeType: ChangeType.ADD,
-                        path: filePath
-                    });
-                } else if (databaseEntry &&
-                    mtime > databaseEntry.timestamp && databaseEntry.filePath &&
-                    this.contentChecker.isContentChanged(databaseEntry.filePath, databaseEntry.checksum)
-                ) {
-                    this.addChange({
-                        changeType: ChangeType.MODIFY,
-                        path: filePath
-                    });
-                }
-            } else {
-                this.foundOnInitialScan.push({
-                    path: filePath,
-                    mtime: Watcher.getTimeStamp(stats)
-                });
-            }
-        } else {
+        if (!this.localPathShouldBeSynced(filePath)) {
             if (
                 this.options.detectNewPlugins &&
                 !this.initialScanComplete &&
@@ -181,6 +157,33 @@ export class Watcher {
                 log.debug('Not synced "plugin.json" found');
                 this.notSyncedPlugins.push(path.join(this.options.syncPath, filePath));
             }
+            return;
+        }
+
+        if (!this.initialScanComplete) {
+            this.foundOnInitialScan.push({
+                path: filePath,
+                ctime: Watcher.getTimeStamp(stats)
+            });
+            return;
+        }
+
+        const ctime = Watcher.getTimeStamp(stats);
+        const databaseEntry: DatabaseEntryInterface = this.database.getEntry(this.pathHelper.localPathFromS3Key(filePath));
+        if (!ctime || !databaseEntry) {
+            this.addChange({
+                changeType: ChangeType.ADD,
+                path: filePath
+            });
+            return;
+        }
+        if (databaseEntry && ctime > databaseEntry.timestamp && databaseEntry.filePath &&
+            this.contentChecker.isContentChanged(databaseEntry.filePath, databaseEntry.checksum)
+        ) {
+            this.addChange({
+                changeType: ChangeType.MODIFY,
+                path: filePath
+            });
         }
     }
 
@@ -292,9 +295,16 @@ export class Watcher {
     }
 
     private publishNotSyncedPlugins() {
+        let errors: Array<string> = [];
         this.notSyncedPlugins = this.notSyncedPlugins.filter((pluginJSON: string) => {
             const directoryName = path.dirname(pluginJSON);
-            const parsedPluginJson = fse.readJsonSync(pluginJSON);
+            let parsedPluginJson;
+            try {
+                parsedPluginJson = fse.readJsonSync(pluginJSON);
+            } catch (error) {
+                errors.push(error.message);
+            }
+
             if (
                 !parsedPluginJson ||
                 !parsedPluginJson.hasOwnProperty('name') ||
@@ -303,11 +313,7 @@ export class Watcher {
                 return false;
             }
 
-            if (!directoryName.endsWith(path.sep + parsedPluginJson.name)) {
-                return false;
-            }
-
-            return true;
+            return directoryName.endsWith(path.sep + parsedPluginJson.name);
         });
 
         log.debug('Not synced plugin.jsons found', this.notSyncedPlugins);
@@ -323,6 +329,10 @@ export class Watcher {
                     pluginSetId: parts.pop()
                 };
             }));
+
+        if (errors.length > 0) {
+            ipcRenderer.sendTo(this.userInterfaceWebContentsId, EVENTS.watcher.fileError, errors);
+        }
     }
 
     private checkCurrentPath(filePath: string): void {

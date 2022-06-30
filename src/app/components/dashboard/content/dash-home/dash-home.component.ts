@@ -22,6 +22,7 @@ import {
 } from '../../../../../constants';
 import { ElectronService } from '../../../../providers/electron.service';
 import { BusyTypeEnum } from '../../../../providers/enums/busyType.enum';
+import { AlertService } from '../../../../providers/alert.service';
 
 @Component({
     selector: 'app-dash-home',
@@ -55,7 +56,8 @@ export class DashHomeComponent implements OnDestroy, OnChanges {
         private changeDetectorRef: ChangeDetectorRef,
         private pluginService: PluginService,
         private translateService: TranslateService,
-        private electronService: ElectronService
+        private electronService: ElectronService,
+        private alertService: AlertService
     ) {
         this.forbiddenCharactersParams = {
             signs: FORBIDDEN_CHARACTERS.signs.join(', '),
@@ -79,6 +81,7 @@ export class DashHomeComponent implements OnDestroy, OnChanges {
                 this.loginId
             ).syncPath;
         }
+        this.alertService.resetAlerts();
         this.initSubscriptions();
     }
 

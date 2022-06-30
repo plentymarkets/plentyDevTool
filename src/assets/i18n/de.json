@@ -15,7 +15,7 @@
         "reload": "Erneut laden",
         "expand": "Alle ausklappen",
         "collapse": "Alle einklappen",
-        "changesContainingForbiddenChars": "Änderungen an den folgenden Dateipfaden werden nicht hochgeladen, da sie verbotene Zeichen enthalten.",
+        "changesContainingForbiddenChars": "Änderungen an den folgenden Dateipfaden werden nicht hochgeladen, da sie verbotene Zeichen enthalten:",
         "forbiddenCharList": "Bei den verbotenen Zeichen handelt es sich um die Zeichen {{ Zeichen }} und alle ASCII-Zeichen von {{ asciiStart }} bis {{ asciiStop }} (dezimal)."
     },
     "sync": {

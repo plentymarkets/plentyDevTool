@@ -67,7 +67,8 @@ export const EVENTS = {
         notSyncedPlugins: 'watcher:notSyncedPlugins',
         working: 'watcher:working',
         currentTimestamp: 'watcher:currentTimestamp',
-        newTimestamp: 'watcher:newTimestamp'
+        newTimestamp: 'watcher:newTimestamp',
+        fileError: 'fileError'
     },
     logMain: 'log:main',
     notification: 'notification:send',

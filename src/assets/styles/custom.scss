@@ -66,18 +66,6 @@ hr {
         box-shadow: none;
     }
 
-    &.highlighted-green {
-        border-bottom: 4px solid #6ad26a;
-    }
-
-    &.highlighted-blue {
-        border-bottom: 4px solid #3f54d0;
-    }
-
-    &.highlighted-red {
-        border-bottom: 4px solid #f11539;
-    }
-
     &:hover {
         background-color: #24b3e0;
         color: #fff;

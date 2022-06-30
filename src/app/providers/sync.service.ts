@@ -15,6 +15,8 @@ import { PartialBuildResultInterface } from './interfaces/partialBuildResult.int
 import { first } from 'rxjs/operators';
 import { ProgressInterface } from './interfaces/progress.interface';
 import { LoginDataInterface } from './interfaces/loginData.interface';
+import { AlertService } from './alert.service';
+import { AlertTypeEnum } from './enums/alert-type.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -32,7 +34,8 @@ export class SyncService {
     constructor(
         private electronService: ElectronService,
         private syncSelectionService: SyncSelectionService,
-        private pluginService: PluginService
+        private pluginService: PluginService,
+        private alertService: AlertService
     ) {
         this.changes = new BehaviorSubject<Array<LocalChangeInterface>>([]);
         this.busy = new BehaviorSubject<BusyTypeEnum>(null);
@@ -243,6 +246,9 @@ export class SyncService {
         );
         this.electronService.ipcRenderer.on(EVENTS.menu.detect, () =>
             this.detectNewPlugins()
+        );
+        this.electronService.ipcRenderer.on(EVENTS.watcher.fileError, (event, errors: Array<string>) =>
+            errors.forEach((error: string) => this.alertService.addAlertString(AlertTypeEnum.danger, error))
         );
     }
 
