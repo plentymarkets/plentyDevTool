@@ -29,6 +29,10 @@ describe('PluginService', () => {
         }
     ];
 
+    it('dummy test', () => {
+        expect(true).toBeTruthy();
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],

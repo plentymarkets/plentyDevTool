@@ -6,8 +6,8 @@ export function loginDataInterfaceFactory(): Factory.Factory<
     LoginDataInterface
     > {
     return Factory.Sync.makeFactory<LoginDataInterface>({
-        id: String(faker.random.number({ min: 1, max: 1000 })),
-        accessToken: faker.random.uuid() + faker.random.uuid(),
+        id: String(faker.datatype.number({ min: 1, max: 1000 })),
+        accessToken: faker.datatype.uuid() + faker.datatype.uuid(),
         domain: 'http://master.plentymarkets.com',
         syncPath: null,
         syncSelection: '[]',

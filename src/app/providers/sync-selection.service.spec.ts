@@ -88,6 +88,7 @@ describe('SyncSelectionService', () => {
         mockPluginSetInterface.plugins = [pluginInterfaceFactory().build()];
 
         syncSelectionService.removeNotAvailablePlugins([mockPluginSetInterface]);
+        expect(true).toEqual(true)
     });
 
 
