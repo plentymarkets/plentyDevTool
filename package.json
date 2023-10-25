@@ -40,10 +40,11 @@
     "preversion": "bash build/checkMasterBranch.sh && npm run test-headless"
   },
   "dependencies": {
+    "@babel/runtime": "^7.23.2",
     "@electron/remote": "^2.0.8",
-    "@ng-bootstrap/ng-bootstrap": "^12.1.2",
-    "@popperjs/core": "^2.11.4",
-    "bootstrap": "^4.6.1",
+    "@ng-bootstrap/ng-bootstrap": "^15.1.2",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2",
     "checksum": "^1.0.0",
     "chokidar": "^3.5.3",
     "electron-log": "^4.4.6",
@@ -55,22 +56,22 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^13.1.0",
-    "@angular-devkit/build-angular": "^13.3.8",
-    "@angular-eslint/builder": "^13.5.0",
-    "@angular-eslint/schematics": "^13.5.0",
-    "@angular-eslint/template-parser": "^13.5.0",
-    "@angular/cli": "13.3.8",
-    "@angular/common": "13.3.11",
-    "@angular/compiler": "13.3.11",
-    "@angular/compiler-cli": "13.3.11",
-    "@angular/core": "13.3.11",
-    "@angular/forms": "13.3.11",
-    "@angular/language-service": "13.3.11",
-    "@angular/localize": "^13.3.11",
-    "@angular/platform-browser": "13.3.11",
-    "@angular/platform-browser-dynamic": "13.3.11",
-    "@angular/router": "13.3.11",
+    "@angular-builders/custom-webpack": "^16.0.1",
+    "@angular-devkit/build-angular": "^16.2.1",
+    "@angular-eslint/builder": "^16.2.0",
+    "@angular-eslint/schematics": "^16.2.0",
+    "@angular-eslint/template-parser": "^16.2.0",
+    "@angular/cli": "16.2.7",
+    "@angular/common": "16.2.10",
+    "@angular/compiler": "16.2.10",
+    "@angular/compiler-cli": "16.2.10",
+    "@angular/core": "16.2.10",
+    "@angular/forms": "16.2.10",
+    "@angular/language-service": "16.2.10",
+    "@angular/localize": "16.2.10",
+    "@angular/platform-browser": "16.2.10",
+    "@angular/platform-browser-dynamic": "16.2.10",
+    "@angular/router": "16.2.10",
     "@faker-js/faker": "^6.0.0",
     "@ngx-translate/core": "14.0.0",
     "@ngx-translate/http-loader": "7.0.0",
@@ -96,11 +97,11 @@
     "run-electron": "^1.0.0",
     "rxjs": "^6.6.7",
     "ts-node": "10.7.0",
-    "typescript": "4.6.2",
+    "typescript": "4.9.5",
     "wait-on": "^6.0.1",
-    "zone.js": "~0.11.5"
+    "zone.js": "~0.13.0"
   },
   "engines": {
-    "node": ">=12.20.0"
+    "node": ">=16.0.0"
   }
 }
