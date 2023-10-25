@@ -9,7 +9,7 @@ import { AlertTypeEnum } from './enums/alert-type.enum';
 
 @Injectable({
     providedIn: 'root'
-})
+    })
 export class PluginService {
     private readonly pluginSets: BehaviorSubject<Array<PluginSetInterface>>;
     private loginId: string;

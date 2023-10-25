@@ -10,7 +10,7 @@ import { StorageService } from '../../providers/storage.service';
     selector: 'app-login-form',
     templateUrl: './login-form.component.html',
     styleUrls: ['./login-form.component.scss']
-})
+    })
 export class LoginFormComponent implements OnInit {
     private cloudDe = 'cloudDe';
     private cloudIe = 'cloudIe';

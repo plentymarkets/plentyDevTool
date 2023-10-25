@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
-})
+    })
 export class DashboardComponent implements OnInit {
     public loginId: string;
     public routeParams$: Observable<Params>;

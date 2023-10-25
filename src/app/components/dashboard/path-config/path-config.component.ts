@@ -7,7 +7,7 @@ import { ElectronService } from '../../../providers/electron.service';
     selector: 'app-path-config',
     templateUrl: './path-config.component.html',
     styleUrls: ['./path-config.component.scss'],
-})
+    })
 export class PathConfigComponent implements OnChanges {
     @Input() public loginId: string;
     public savedPath = false;

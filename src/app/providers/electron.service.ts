@@ -11,7 +11,7 @@ import { EVENTS } from '../../constants';
 
 @Injectable({
     providedIn: 'root'
-})
+    })
 export class ElectronService {
     private syncWorkerWebContentsId: number;
 

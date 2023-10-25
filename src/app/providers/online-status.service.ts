@@ -4,7 +4,7 @@ import { LogService } from './log.service';
 
 @Injectable({
     providedIn: 'root',
-})
+    })
 export class OnlineStatusService {
     private readonly onlineStatus: BehaviorSubject<boolean>;
 

@@ -70,48 +70,48 @@ const DRIVE_MODULES = [
 
 @NgModule({
     declarations: [
-        DRIVE_COMPONENTS,
+    DRIVE_COMPONENTS,
     ],
     imports: [
-        DRIVE_MODULES,
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        NgbModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (HttpLoaderFactory),
-                deps: [HttpClient]
-            }
+    DRIVE_MODULES,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    TranslateModule.forRoot({
+        loader: {
+        provide: TranslateLoader,
+        useFactory: (HttpLoaderFactory),
+        deps: [HttpClient]
+        }
         }),
     ],
     exports: [
-        SortableDirective
+    SortableDirective
     ],
     providers: [
-        ElectronService,
-        LoginService,
-        SyncService,
-        SyncSelectionService,
-        LoginResolver,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthenticationInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: CatchErrorInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: DebugInterceptor,
-            multi: true
-        }
+    ElectronService,
+    LoginService,
+    SyncService,
+    SyncSelectionService,
+    LoginResolver,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticationInterceptor,
+    multi: true
+    },
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CatchErrorInterceptor,
+    multi: true
+    },
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: DebugInterceptor,
+    multi: true
+    }
     ],
     bootstrap: [AppComponent]
-})
+    })
 export class AppModule {
 }

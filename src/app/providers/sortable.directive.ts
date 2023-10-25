@@ -9,7 +9,7 @@ import {
 
 @Directive({
     selector: '[sortableTabs]',
-})
+    })
 export class SortableDirective implements AfterContentInit {
     @Output() orderChanged = new EventEmitter();
 

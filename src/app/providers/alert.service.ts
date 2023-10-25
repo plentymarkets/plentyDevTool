@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
-})
+    })
 export class AlertService {
     public alerts: Array<AlertInterface> = [];
     public $newAlert: Subject<void> = new Subject<void>();

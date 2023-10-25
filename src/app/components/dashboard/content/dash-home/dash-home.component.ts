@@ -28,7 +28,7 @@ import { AlertService } from '../../../../providers/alert.service';
     selector: 'app-dash-home',
     templateUrl: './dash-home.component.html',
     styleUrls: ['./dash-home.component.scss'],
-})
+    })
 export class DashHomeComponent implements OnDestroy, OnChanges {
     public loadingPlugins: string;
     public isLoading = false;

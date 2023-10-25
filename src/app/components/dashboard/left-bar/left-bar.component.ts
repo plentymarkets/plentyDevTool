@@ -25,7 +25,7 @@ import { NotificationModalComponent } from '../notification-modal/notification-m
     selector: 'app-left-bar',
     templateUrl: './left-bar.component.html',
     styleUrls: ['./left-bar.component.scss'],
-})
+    })
 export class LeftBarComponent implements OnChanges, OnDestroy {
     @Input() public loginId: string;
     @Output() public refreshButtonClicked = new EventEmitter();

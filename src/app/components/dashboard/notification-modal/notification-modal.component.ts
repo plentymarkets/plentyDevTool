@@ -7,7 +7,7 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
     selector: 'app-notification-modal',
     templateUrl: './notification-modal.component.html',
     styleUrls: ['./notification-modal.component.scss'],
-})
+    })
 export class NotificationModalComponent {
     @Input() public userId: string;
 

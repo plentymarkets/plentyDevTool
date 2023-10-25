@@ -11,7 +11,7 @@ import { LoginDataInterface } from '../providers/interfaces/loginData.interface'
 
 @Injectable({
     providedIn: 'root',
-})
+    })
 export class AuthenticationInterceptor implements HttpInterceptor {
     public intercept(
         request: HttpRequest<any>,
