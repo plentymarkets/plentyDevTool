@@ -7,7 +7,7 @@ import { EVENTS } from '../../constants';
 
 @Injectable({
     providedIn: 'root'
-    })
+})
 export class IsLoggedInGuard implements CanActivate {
 
     constructor(private loginService: LoginService,

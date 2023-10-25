@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
-    })
+})
 export class CatchErrorInterceptor implements HttpInterceptor {
     constructor() {
     }

@@ -6,7 +6,7 @@ import { LogService } from './log.service';
 
 @Injectable({
     providedIn: 'root'
-    })
+})
 export class NotificationService {
     constructor(private electronService: ElectronService) {
         this.electronService.ipcRenderer.on(EVENTS.notification, (event, type, message) => {

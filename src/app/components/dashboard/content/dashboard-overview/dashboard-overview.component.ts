@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'app-dashboard-overview',
     templateUrl: './dashboard-overview.component.html',
-    })
+})
 export class DashboardOverviewComponent implements OnInit {
     public routeData$: Observable<Data>;
 

@@ -17,7 +17,7 @@ import { AlertTypeEnum } from './enums/alert-type.enum';
 
 @Injectable({
     providedIn: 'root',
-    })
+})
 export class LoginService {
     public isFromDashboard: BehaviorSubject<boolean>;
     public isLoginLoading: boolean = false;

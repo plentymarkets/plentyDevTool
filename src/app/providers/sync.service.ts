@@ -20,7 +20,7 @@ import { AlertTypeEnum } from './enums/alert-type.enum';
 
 @Injectable({
     providedIn: 'root',
-    })
+})
 export class SyncService {
     public changes: BehaviorSubject<Array<LocalChangeInterface>>;
     public busy: BehaviorSubject<BusyTypeEnum>;

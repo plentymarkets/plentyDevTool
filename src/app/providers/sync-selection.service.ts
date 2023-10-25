@@ -6,7 +6,7 @@ import { PluginInterface } from './interfaces/plugin.interface';
 
 @Injectable({
     providedIn: 'root',
-    })
+})
 export class SyncSelectionService {
     public isSelectionLoaded = false;
     public syncSelection: Array<PluginIdentifierInterface>;

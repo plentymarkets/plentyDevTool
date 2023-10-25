@@ -5,7 +5,7 @@ import { URLS } from '../../constants';
 
 @Injectable({
     providedIn: 'root'
-    })
+})
 export class DebugInterceptor implements HttpInterceptor {
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.url.startsWith(URLS.localVMUrl)) {

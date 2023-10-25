@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
     selector: 'app-busy-modal',
     templateUrl: './busy-modal.component.html',
     styleUrls: ['./busy-modal.component.scss']
-    })
+})
 export class BusyModalComponent implements OnInit, OnDestroy {
     public currentAction = '';
     public value = 0;

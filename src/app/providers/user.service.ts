@@ -11,7 +11,7 @@ import { StorageService } from './storage.service';
 
 @Injectable({
     providedIn: 'root'
-    })
+})
 export class UserService {
 
     constructor(private http: HttpClient) {

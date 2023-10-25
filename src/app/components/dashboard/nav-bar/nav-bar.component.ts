@@ -16,7 +16,7 @@ import { AlertService } from '../../../providers/alert.service';
     selector: 'app-nav-bar',
     templateUrl: './nav-bar.component.html',
     styleUrls: ['./nav-bar.component.scss'],
-    })
+})
 export class NavBarComponent implements OnChanges {
     public domain: string;
     public gravatar =

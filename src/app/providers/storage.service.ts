@@ -10,7 +10,7 @@ import { LoginDataInterface } from './interfaces/loginData.interface';
 
 @Injectable({
     providedIn: 'root',
-    })
+})
 export class StorageService {
     private static storageValues: Array<LoginDataInterface> = [];
 

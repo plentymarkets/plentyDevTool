@@ -6,7 +6,7 @@ import { LoginService } from '../../../providers/login.service';
     selector: 'app-login-dialog',
     templateUrl: './login-dialog.component.html',
     styleUrls: ['./login-dialog.component.scss'],
-    })
+})
 
 export class LoginDialogComponent {
     @Input() public systemId?: string;
