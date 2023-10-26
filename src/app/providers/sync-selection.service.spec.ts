@@ -83,15 +83,6 @@ describe('SyncSelectionService', () => {
         expect(syncSelectionService.syncSelection.length).toEqual(0);
     });
 
-    it('it removes unavailable plugins', () => {
-        const mockPluginSetInterface = pluginSetInterfaceFactory().build();
-        mockPluginSetInterface.plugins = [pluginInterfaceFactory().build()];
-
-        syncSelectionService.removeNotAvailablePlugins([mockPluginSetInterface]);
-        expect(true).toEqual(true)
-    });
-
-
 });
 
 function findEntry(pluginIdentifier: PluginIdentifierInterface, entriesArray: Array<PluginIdentifierInterface>) {
