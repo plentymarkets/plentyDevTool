@@ -7,8 +7,8 @@
 1. Clone the repository.
 2. Check out the `main` branch.
 3. Open the command line.
-4. Run `npm i` to install the node modules.
-5. Run `npm start` to start the application.
+4. Run `yarn` to install the node modules.
+5. Run `yarn start` to start the application.
 
 For configuration details and the functionality of the app, refer to the docs.
 
