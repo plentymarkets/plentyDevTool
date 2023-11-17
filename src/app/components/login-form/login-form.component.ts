@@ -33,7 +33,7 @@ export class LoginFormComponent implements OnInit {
         this.cloudIe,
         this.ownCloud
     ];
-    public languages = this.translate.getLangs();
+    public languages = [];
     public validationError = '';
     public validationErrorCloud = '';
     public showAdvanced = false;
@@ -46,6 +46,7 @@ export class LoginFormComponent implements OnInit {
         public loginService: LoginService,
         public translate: TranslateService
     ) {
+        this.languages = this.translate.getLangs();
         if (this.router.getCurrentNavigation() && this.router.getCurrentNavigation().previousNavigation === null
             && this.isFromDashboard() > 0) {
             this.goBack();
