@@ -4,10 +4,10 @@ import * as faker from 'faker';
 
 export function loginResponseInterfaceFactory(): Factory.Factory<LoginResponseInterface> {
     return Factory.Sync.makeFactory<LoginResponseInterface>({
-        accessToken: faker.random.uuid() + faker.random.uuid(),
+        accessToken: faker.datatype.uuid() + faker.datatype.uuid(),
         domain: 'http://master.plentymarkets.com',
-        expiresIn: faker.random.number(),
-        refreshToken: faker.random.uuid() + faker.random.uuid(),
+        expiresIn: faker.datatype.number(),
+        refreshToken: faker.datatype.uuid() + faker.datatype.uuid(),
         tokenType: 'Bearer'
     });
 }
