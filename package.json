@@ -81,7 +81,7 @@
     "@typescript-eslint/parser": "6.9.0",
     "core-js": "^3.21.1",
     "electron": "^22.3.25",
-    "electron-builder": "23.1.0",
+    "electron-builder": "24.6.4",
     "electron-reload": "2.0.0-alpha.1",
     "eslint": "8.11.0",
     "factory.ts": "^1.1.0",
