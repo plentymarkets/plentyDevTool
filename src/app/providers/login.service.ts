@@ -82,6 +82,7 @@ export class LoginService {
             )
             .subscribe(
                 (loginResponse: LoginResponseInterface) => {
+                    loginResponse.domain = `https://p${credentials.plentyId}.my.plentysystems.com`;
                     if (
                         loginResponse &&
                         loginResponse.accessToken &&

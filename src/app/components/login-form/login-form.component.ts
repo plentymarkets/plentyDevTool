@@ -66,14 +66,14 @@ export class LoginFormComponent implements OnInit {
         if (this.showAdvanced) {
             switch (this.credentialsDomain) {
                 case this.cloudDe:
-                    this.credentials.domain = this.cloudDeLogin;
+                    this.credentials.domain = `https://p${this.credentials.plentyId}.my.plentysystems.com/rest/login`;
                     break;
                 case this.cloudIe:
                     this.credentials.domain = this.cloudIeLogin;
                     break;
                 case this.ownCloud:
                     const ownCloudId: string = this.ownCloudId < 10 ? `0${this.ownCloudId}` : `${this.ownCloudId}`;
-                    this.credentials.domain = `https://plentymarkets-cloud-${ownCloudId}.com/rest/login`;
+                    this.credentials.domain = `https://p${this.credentials.plentyId}.my.plentysystems.com/rest/login`;
                     break;
                 default:
                     break;
